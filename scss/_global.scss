@@ -1,0 +1,81 @@
+@import "tema";
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+*:focus {
+    outline-color: $azul;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: var(--fundo);
+    background-image: url('../img/bg-desktop-dark.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    padding: 0 1rem;
+    transition: 0.3s ease-in-out;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+h1,
+p {
+    line-height: 1.5;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+p {
+    font-weight: 400;
+}
+
+#checa {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--texto2);
+    border-radius: 50%;
+    position: relative;
+
+    &.checado {
+        background: $check;
+
+        &::after {
+            position: absolute;
+            content: url('../img/icon-check.svg');
+            width: 11px;
+            top: 50%;
+            left: 50%;
+            margin-left: -4.5px;
+            margin-top: -6.5px;
+        }
+    }
+}

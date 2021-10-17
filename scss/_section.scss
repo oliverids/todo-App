@@ -1,0 +1,23 @@
+#todo {
+    .container {
+        flex-direction: column;
+
+        .cinput {
+            margin-bottom: 1.4rem;
+            padding: 16px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+
+            #create {
+                width: 85%;
+                background: none;
+                border: none;
+                color: var(--texto2);
+                padding: 8px 4px;
+                font-family: "Josefin Sans", sans-serif;
+                font-size: 1rem;
+            }
+        }
+    }
+}

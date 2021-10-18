@@ -4,28 +4,16 @@ tema.addEventListener('click', () => {
     tema.classList.toggle("ativo");
 })
 
-let tasks = document.querySelectorAll('.task');
-
-tasks.forEach(e => {
-    e.addEventListener('click', evt => {
-        let checa = evt.currentTarget.querySelector('.checa');
-
-        [evt.currentTarget, checa].forEach(e => {
-            e.classList.toggle('checado');
-        })
-        // evt.currentTarget.classList.toggle('checado');
-
-    })
-})
-
-const create = document.getElementById('create'),
+const post = document.getElementById('post'),
+    create = document.getElementById('create'),
     taskList = document.querySelector('.tasks ul'),
-    taskArray = Array.from(document.querySelectorAll('.task')),
     itemLeft = document.querySelector('.clear p');
+let tasks;
 
-window.addEventListener('keyup', evt => {
+function postTask() {
     let tasktext = create.value;
-    if (evt.keyCode == 13 && tasktext) {
+
+    if (tasktext) {
         let newTask = document.createElement('li');
         newTask.classList.add('task');
         newTask.innerHTML = `
@@ -36,13 +24,34 @@ window.addEventListener('keyup', evt => {
         <button class="close"></button>
         `
         taskList.append(newTask);
-        taskArray.unshift(newTask);
+        itemLeft.innerText = `${taskList.children.length} items left`;
+    }
 
-        for (let i = 0; i < taskArray.length; i++) {
-            taskList.append(taskArray[i]);
-        }
+    tasks = [].slice.call(taskList.querySelectorAll('.task'), 0);
+}
 
-        itemLeft.innerText = `${taskArray.length} items left`
+post.addEventListener('click', () => {
+    postTask();
+    // create.value = '';
+})
+
+window.addEventListener('keyup', evt => {
+    if (evt.keyCode == 13) {
+        post.click();
     }
 })
+
+taskList.addEventListener('click', evt => {
+    let index = tasks.indexOf(evt.target);
+    if (index !== -1) {
+        tasks[index].classList.add('completo')
+        tasks[index].querySelector('.checa').classList.add('completo');
+        
+        let completas = taskList.querySelectorAll('li.task.completo');
+        itemLeft.innerText = `${taskList.children.length - completas.length} items left`;
+    }
+});
+
+
+
 

@@ -11,17 +11,24 @@
             align-items: center;
 
             #create {
-                width: 85%;
+                width: 100%;
                 background: none;
                 border: none;
                 color: var(--texto);
-                padding: 4px;
+                padding: 6px 4px;
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 1rem;
 
                 &::placeholder {
                     color: var(--texto2);
                 }
+            }
+
+            #post {
+                padding: 6px;
+                font-size: 1.2rem;
+                margin-right: 12px;
+                color: var(--texto2);
             }
         }
 
@@ -80,11 +87,11 @@
                         }
                     }
 
-                    &.checado {
+                    &.completo {
                         text-decoration: line-through;
                     }
 
-                    &.checado:hover {
+                    &.completo:hover {
                         .checa {
                             background: $check;
                             border: none;

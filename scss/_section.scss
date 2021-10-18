@@ -14,10 +14,14 @@
                 width: 85%;
                 background: none;
                 border: none;
-                color: var(--texto2);
+                color: var(--texto);
                 padding: 4px;
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 1rem;
+
+                &::placeholder {
+                    color: var(--texto2);
+                }
             }
         }
 
@@ -29,7 +33,7 @@
             justify-content: space-between;
 
             ul {
-                li {
+                .task {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -37,6 +41,7 @@
                     padding: 16px;
                     border-bottom: 1px solid var(--detalhe);
                     cursor: pointer;
+                    color: var(--texto2);
 
                     div {
                         display: flex;
@@ -58,18 +63,41 @@
                     }
 
                     &:hover {
+                        color: var(--texto);
+
                         .close {
                             visibility: visible;
                             opacity: 1;
                             transition: 0.3s ease-in-out;
                         }
 
-                        div .checa {
+                        .checa {
                             border: double 2px transparent;
                             background-image: linear-gradient(var(--fundolista), var(--fundolista)),
                                 radial-gradient(circle at top left, #57ddff, #c058f3);
                             background-origin: border-box;
                             background-clip: content-box, border-box;
+                        }
+                    }
+
+                    &.checado {
+                        text-decoration: line-through;
+                    }
+
+                    &.checado:hover {
+                        .checa {
+                            background: $check;
+                            border: none;
+
+                            &::after {
+                                position: absolute;
+                                content: url("../img/icon-check.svg");
+                                width: 10px;
+                                top: 50%;
+                                left: 50%;
+                                margin-left: -5px;
+                                margin-top: -6px;
+                            }
                         }
                     }
                 }

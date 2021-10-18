@@ -78,6 +78,7 @@ p {
 
     &.checado {
         background: $check;
+        border: none;
 
         &::after {
             position: absolute;

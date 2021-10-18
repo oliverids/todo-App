@@ -6,15 +6,18 @@ main {
         align-items: center;
 
         h1 {
-           color: hsl(0, 0%, 98%);
-           letter-spacing: 1rem;
+            color: hsl(0, 0%, 98%);
+            letter-spacing: 1rem;
         }
 
         #tema {
             width: 46px;
             height: 46px;
-            background: url('../img/icon-moon.svg') no-repeat center;
+            background: url("../img/icon-moon.svg") no-repeat center;
+
+            &.ativo {
+                background: url("../img/icon-sun.svg") no-repeat center;
+            }
         }
     }
 }
-

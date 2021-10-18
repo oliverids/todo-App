@@ -6,7 +6,7 @@ $check: linear-gradient(#57ddff, #c058f3);
     --fundolista: hsl(235, 24%, 19%);
     --texto: hsl(234, 39%, 85%);
     --texto2: hsl(234, 11%, 52%);
-    --detalhe: hsl(234, 39%, 85%);
+    --detalhe: hsl(233, 14%, 35%);
 }
 
 .claro {
@@ -24,8 +24,6 @@ body {
     .cinput, .tasks {
         background-color: var(--fundolista);
     }
-
-
 
     &.claro {
         background-color: var(--fundo);

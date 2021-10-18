@@ -21,48 +21,37 @@
     <section id="todo">
         <div class="container">
             <div class="cinput">
-                <button id="checa"></button>
+                <button class="checa"></button>
                 <input type="text" id="create" placeholder="Create a new todo...">
             </div>
 
             <article class="tasks">
                 <ul>
                     <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
+                        <div>
+                            <button class="checa"></button>
+                            <p>Complete online JavaScript course</p>
+                        </div>
                         <button class="close"></button>
                     </li>
+
                     <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
-                        <button class="close"></button>
-                    </li>
-                    <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
-                        <button class="close"></button>
-                    </li>
-                    <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
-                        <button class="close"></button>
-                    </li>
-                    <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
-                        <button class="close"></button>
-                    </li>
-                    <li>
-                        <button class="check"></button>
-                        <p>Complete online JavaScript course</p>
+                        <div>
+                            <button class="checa"></button>
+                            <p>Complete online JavaScript course</p>
+                        </div>
                         <button class="close"></button>
                     </li>
                 </ul>
+                <div class="clear">
+                    <p>5 items left</p>
+                    <button>Clear Completed</button>
+                </div>
             </article>
 
             <article class="sort">
                 <ul>
-                    <li><button>All</button></li>
+                    <li><button class="sorted">All</button></li>
                     <li><button>Active</button></li>
                     <li><button>Completed</button></li>
                 </ul>
@@ -70,6 +59,13 @@
             </article>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+          <p>Challenge by <a href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>.</p>
+          <p>Coded by <a href="https://github.com/oliverids/">Isabela Oliveira</a>.</p>
+        </div>
+      </footer>
 </body>
 
 </html>

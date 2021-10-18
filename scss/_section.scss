@@ -8,15 +8,94 @@
             border-radius: 6px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             #create {
                 width: 85%;
                 background: none;
                 border: none;
                 color: var(--texto2);
-                padding: 8px 4px;
+                padding: 4px;
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 1rem;
+            }
+        }
+
+        .tasks {
+            border-radius: 6px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            ul {
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 0.8rem;
+                    padding: 16px;
+                    border-bottom: 1px solid var(--detalhe);
+                    cursor: pointer;
+
+                    div {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .checa {
+                            margin-right: 1rem;
+                        }
+                    }
+
+                    .close {
+                        padding: 10px;
+                        background: url("../img/icon-cross.svg") no-repeat center;
+                        background-size: 70%;
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: 0.3s ease-in-out;
+                    }
+
+                    &:hover {
+                        .close {
+                            visibility: visible;
+                            opacity: 1;
+                            transition: 0.3s ease-in-out;
+                        }
+
+                        div .checa {
+                            border: double 2px transparent;
+                            background-image: linear-gradient(var(--fundolista), var(--fundolista)),
+                                radial-gradient(circle at top left, #57ddff, #c058f3);
+                            background-origin: border-box;
+                            background-clip: content-box, border-box;
+                        }
+                    }
+                }
+            }
+
+            .clear {
+                padding: 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.8rem;
+                color: var(--texto2);
+
+                @media only screen and (min-width: 768px) {
+                    padding: 16px 32px;
+                }
+
+                button {
+                    font-size: 0.8rem;
+                    color: var(--texto2);
+                    padding: 6px 0;
+
+                    &:hover {
+                        color: var(--texto);
+                    }
+                }
             }
         }
     }

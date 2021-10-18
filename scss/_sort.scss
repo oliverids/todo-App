@@ -1,0 +1,35 @@
+.sort {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 12px 16px;
+        background-color: var(--fundolista);
+        border-radius: 6px;
+        margin-top: 1.4rem;
+
+        li {
+            button {
+                color: var(--texto2);
+                padding: 8px 12px;
+                font-size: 1rem;
+                font-weight: 700;
+
+                &:hover {
+                    color: var(--texto);
+                }
+
+                &.sorted {
+                    color: $azul;
+                }
+            }
+        }
+    }
+
+    p {
+        color: var(--texto2);
+        text-align: center;
+        margin-top: 1.4rem;
+        font-size: 0.9rem;
+    }
+}

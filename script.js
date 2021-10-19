@@ -49,6 +49,11 @@ taskList.addEventListener('click', evt => {
         
         let completas = taskList.querySelectorAll('li.task.completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} items left`;
+    } else if(evt.target.matches('.close')) {
+        let item = evt.target.parentElement;
+        // console.log(item);
+        taskList.removeChild(item)
+        itemLeft.innerText = `${taskList.children.length} items left`;
     }
 });
 

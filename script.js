@@ -1,3 +1,4 @@
+//themes
 const tema = document.getElementById('tema');
 tema.addEventListener('click', () => {
     document.body.classList.toggle('claro');
@@ -8,14 +9,22 @@ const post = document.getElementById('post'),
     create = document.getElementById('create'),
     taskList = document.querySelector('.tasks ul'),
     itemLeft = document.querySelector('.clear p');
-let tasks;
+let tasks, dragList;
 
+//update the task list after every modification
+function updateList() {
+    dragList = taskList.querySelectorAll('.task');
+    tasks = [].slice.call(taskList.querySelectorAll('.task'), 0);
+}
+
+//function to post the new task
 function postTask() {
     let tasktext = create.value;
 
     if (tasktext) {
         let newTask = document.createElement('li');
         newTask.classList.add('task');
+        newTask.setAttribute('draggable', 'true');
         newTask.innerHTML = `
         <div>
           <button class="checa"></button>
@@ -26,14 +35,14 @@ function postTask() {
         taskList.append(newTask);
         itemLeft.innerText = `${taskList.children.length} item(s) left`;
     }
-
-    tasks = [].slice.call(taskList.querySelectorAll('.task'), 0);
+    updateList();
 }
 
 let all = document.getElementById('all'),
     active = document.getElementById('active'),
     completed = document.getElementById('completed');
 
+//sorting through all, active and completed
 function sort() {
     let completedTasks = document.querySelectorAll('li.task.completo'),
         activeTasks = document.querySelectorAll('li.task:not(.completo)');
@@ -53,6 +62,7 @@ function sort() {
     }
 }
 
+//active class
 [all, active, completed].forEach(e => {
     e.addEventListener('click', evt => {
         [all, active, completed].forEach(e => e.classList.remove('sorted'));
@@ -66,7 +76,7 @@ function sort() {
         } else {
             all.classList.add('sorted');
         }
-
+        
         sort();
     })
 })
@@ -76,7 +86,7 @@ post.addEventListener('click', () => {
     all.classList.add('sorted');
     sort();
     postTask();
-    // create.value = '';
+    create.value = '';
 })
 
 window.addEventListener('keyup', evt => {
@@ -85,19 +95,20 @@ window.addEventListener('keyup', evt => {
     }
 })
 
+//mark as completed
 let index;
 function completeTask() {
     if (index !== -1) {
-        tasks[index].classList.add('completo')
-        tasks[index].querySelector('.checa').classList.add('completo');
+        tasks[index].classList.toggle('completo')
+        tasks[index].querySelector('.checa').classList.toggle('completo');
         let completas = taskList.querySelectorAll('li.task.completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
-
     }
 }
 
+//marking as completed and removing tasks
 taskList.addEventListener('click', evt => {
-    if (evt.target.nodeName == 'P' || evt.target.nodeName == 'DIV' || evt.target.matches('.checa')) {
+    if (!evt.target.nodeName == 'LI') {
         index = tasks.indexOf(evt.target.closest('li'));
         completeTask();
         if (evt.target.matches('.close')) {
@@ -118,6 +129,7 @@ taskList.addEventListener('click', evt => {
     }
 });
 
+//clear all completed
 let clearCompleted = document.getElementById('clear');
 clearCompleted.addEventListener('click', () => {
     let completedTasks = document.querySelectorAll('li.task.completo');
@@ -125,6 +137,70 @@ clearCompleted.addEventListener('click', () => {
     itemLeft.innerText = `${taskList.children.length} item(s) left`;
 })
 
+//drag and drop to reorder functions and mutation observer
+let dragged = null;
+function handleDragStart(e) {
+    this.style.filter = 'brightness(50%)';
+    dragged = this;
+
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+    e.dataTransfer.setData('text/text', 'id');
+}
+
+function handleDragOver(e) {
+    if (e.preventDefault) e.preventDefault();
+
+    e.dataTransfer.dropEffect = 'move'; 
+    return false;
+}
+
+function handleDragEnter(e) {
+    this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+    this.classList.remove('over'); 
+}
+
+function handleDrop(e) {
+    if (e.preventDefault) e.preventDefault();
+
+    if (dragged != this) {
+        dragged.innerHTML = this.innerHTML;
+        this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+    return false;
+}
+
+function handleDragEnd(e) {
+    dragList.forEach(each => {
+        this.style.filter = 'brightness(100%)';
+        each.classList.remove('over');
+    })
+    updateList();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    let lista = document.querySelector('.tasks ul');
+
+    let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+    let observer = new MutationObserver(function (mutations) {
+        mutations.forEach(() => {
+            let tasks = document.querySelectorAll('.task');
+            tasks.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart, false);
+                item.addEventListener('dragenter', handleDragEnter, false);
+                item.addEventListener('dragover', handleDragOver, false);
+                item.addEventListener('dragleave', handleDragLeave, false);
+                item.addEventListener('drop', handleDrop, false);
+                item.addEventListener('dragend', handleDragEnd, false);
+            });
+        });
+    });
+    observer.observe(lista, { childList: true });
+});
 
 
 

@@ -50,6 +50,10 @@
                     cursor: pointer;
                     color: var(--texto2);
 
+                    &.over {
+                        border: 1px solid var(--detalhe);
+                    }
+
                     div {
                         display: flex;
                         justify-content: space-between;
@@ -93,7 +97,7 @@
 
                     &.completo:hover {
                         .checa {
-                            background: $check;
+                            background: linear-gradient(#57ddff, #c058f3);
                             border: none;
 
                             &::after {

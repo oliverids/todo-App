@@ -121,12 +121,15 @@ function sort() {
 })
 
 post.addEventListener('click', () => {
-    [all, active, completed].forEach(e => e.classList.remove('sorted'));
-    all.classList.add('sorted');
-    sort();
-    postTask(create.value);
-    create.value = '';
-    updateLS();
+    let valor = create.value;
+    if (valor.length) {
+        [all, active, completed].forEach(e => e.classList.remove('sorted'));
+        all.classList.add('sorted');
+        sort();
+        postTask(valor);
+        create.value = '';
+        updateLS();
+    }
 })
 
 window.addEventListener('keyup', evt => {
@@ -144,6 +147,18 @@ function completeTask() {
         tasks[index].classList.toggle('completo')
         tasks[index].querySelector('.checa').classList.toggle('completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
+
+        let foramCompletas = tasks.filter(e => {
+            return e.classList.contains('completo');
+        });
+
+        let estaoAtivas = tasks.filter(e => {
+            return !e.classList.contains('completo');
+        });
+
+        taskList.innerHTML= '';
+        estaoAtivas.forEach(e => taskList.appendChild(e));
+        foramCompletas.forEach(e => taskList.appendChild(e));
     }
     updateList();
     updateLS();
@@ -152,7 +167,7 @@ function completeTask() {
 //marking as completed and removing tasks
 taskList.addEventListener('click', evt => {
     if (!evt.target.nodeName == 'LI') {
-        index = tasks.indexOf(evt.target.closest('li'));
+        index = tasks.indexOf(evt.target.closest('li.task'));
         completeTask();
         if (evt.target.matches('.close')) {
             let item = evt.target.parentElement;

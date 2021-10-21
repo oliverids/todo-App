@@ -9,11 +9,10 @@ const post = document.getElementById('post'),
     create = document.getElementById('create'),
     taskList = document.querySelector('.tasks ul'),
     itemLeft = document.querySelector('.clear p');
-let tasks, dragList, local = [], complete = [];
+let tasks, dragList, local, complete;
 
 //update the task list after every modification
 function updateList() {
-    localStorage.clear();
     local = [];
     complete = [];
     dragList = taskList.querySelectorAll('.task');
@@ -31,10 +30,25 @@ function updateList() {
 }
 
 //function to post the new task
-function postTask(texto) {
+function postTask(texto, completo) {
     let tasktext = texto;
+    let classe = completo;
 
-    if (tasktext) {
+    if (tasktext && classe) {
+        newTask = document.createElement('li');
+        newTask.classList.add('task');
+        newTask.setAttribute('draggable', 'true');
+        newTask.classList.add(completo)
+        newTask.innerHTML = `
+        <div>
+          <button class="checa completo"></button>
+          <p>${tasktext}</p>
+        </div>
+        <button class="close"></button>
+        `
+        taskList.append(newTask);
+        itemLeft.innerText = `${taskList.children.length} item(s) left`;
+    } else {
         newTask = document.createElement('li');
         newTask.classList.add('task');
         newTask.setAttribute('draggable', 'true');
@@ -200,11 +214,10 @@ function handleDragEnd(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let notouchWarning = document.getElementById('notouch');
     //check if user is using a device with touchscreen
+    let notouchWarning = document.getElementById('notouch');
     if ('ontouchstart' in window) {
         notouchWarning.classList.add('notouch')
-        console.log('touch')
     } else {
         notouchWarning.classList.remove('notouch')
     }
@@ -216,6 +229,14 @@ window.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < cleaned.length; i++) {
             let texto = cleaned[i];
             postTask(texto);
+        }
+    }
+    if ('complete' in localStorage) {
+        let complete = localStorage.getItem('complete');
+        let cleaned = Array.from(complete.split(','));
+        for (let i = 0; i < cleaned.length; i++) {
+            let texto = cleaned[i];
+            postTask(texto, 'completo');
         }
     }
 

@@ -29,6 +29,18 @@ function updateList() {
     })
 }
 
+function updateLS() {
+    let completas = taskList.querySelectorAll('li.task.completo');
+    if (completas.length == 0) {
+        localStorage.removeItem('complete');
+    }
+
+    let ativas = document.querySelectorAll('li.task:not(.completo)');
+    if (ativas.length == 0) {
+        localStorage.removeItem('tasks');
+    }
+}
+
 //function to post the new task
 function postTask(texto, completo) {
     let tasktext = texto;
@@ -154,6 +166,7 @@ taskList.addEventListener('click', evt => {
             taskList.removeChild(item)
             itemLeft.innerText = `${taskList.children.length} item(s) left`;
             updateList();
+            updateLS();
         }
         sort();
     }

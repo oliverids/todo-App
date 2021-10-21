@@ -200,6 +200,15 @@ function handleDragEnd(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    let notouchWarning = document.getElementById('notouch');
+    //check if user is using a device with touchscreen
+    if ('ontouchstart' in window) {
+        notouchWarning.classList.add('notouch')
+        console.log('touch')
+    } else {
+        notouchWarning.classList.remove('notouch')
+    }
+
     //check if tasks exist and update them on the page
     if ('tasks' in localStorage) {
         let tasks = localStorage.getItem('tasks');

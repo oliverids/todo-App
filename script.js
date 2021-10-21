@@ -13,31 +13,32 @@ let tasks, dragList, local, complete;
 
 //update the task list after every modification
 function updateList() {
-    local = [];
-    complete = [];
     dragList = taskList.querySelectorAll('.task');
     tasks = [].slice.call(taskList.querySelectorAll('.task'), 0);
-    let ativas = document.querySelectorAll('li.task:not(.completo)');
-    ativas.forEach(e => {
-        local.push(e.children[0].children[1].innerText);
-        localStorage.setItem(`tasks`, local);
-    })
-    let completas = taskList.querySelectorAll('li.task.completo');
-    completas.forEach(e => {
-        complete.push(e.children[0].children[1].innerText);
-        localStorage.setItem(`complete`, complete);
-    })
 }
 
 function updateLS() {
+    local = [];
+    complete = [];
+    let ativas = document.querySelectorAll('li.task:not(.completo)');
     let completas = taskList.querySelectorAll('li.task.completo');
+
     if (completas.length == 0) {
         localStorage.removeItem('complete');
+    } else {
+        completas.forEach(e => {
+            complete.push(e.children[0].children[1].innerText);
+            localStorage.setItem(`complete`, complete);
+        })
     }
 
-    let ativas = document.querySelectorAll('li.task:not(.completo)');
     if (ativas.length == 0) {
         localStorage.removeItem('tasks');
+    } else {
+        ativas.forEach(e => {
+            local.push(e.children[0].children[1].innerText);
+            localStorage.setItem(`tasks`, local);
+        })
     }
 }
 
@@ -125,6 +126,7 @@ post.addEventListener('click', () => {
     sort();
     postTask(create.value);
     create.value = '';
+    updateLS();
 })
 
 window.addEventListener('keyup', evt => {
@@ -137,13 +139,14 @@ window.addEventListener('keyup', evt => {
 let index;
 function completeTask() {
     complete = [];
+    let completas = taskList.querySelectorAll('li.task.completo');
     if (index !== -1) {
         tasks[index].classList.toggle('completo')
         tasks[index].querySelector('.checa').classList.toggle('completo');
-        let completas = taskList.querySelectorAll('li.task.completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
     }
     updateList();
+    updateLS();
 }
 
 //marking as completed and removing tasks
@@ -158,6 +161,7 @@ taskList.addEventListener('click', evt => {
             updateList();
         }
         sort();
+        updateLS();
     } else {
         index = tasks.indexOf(evt.target);
         completeTask();
@@ -166,9 +170,9 @@ taskList.addEventListener('click', evt => {
             taskList.removeChild(item)
             itemLeft.innerText = `${taskList.children.length} item(s) left`;
             updateList();
-            updateLS();
         }
         sort();
+        updateLS();
     }
 });
 

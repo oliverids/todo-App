@@ -9,20 +9,33 @@ const post = document.getElementById('post'),
     create = document.getElementById('create'),
     taskList = document.querySelector('.tasks ul'),
     itemLeft = document.querySelector('.clear p');
-let tasks, dragList;
+let tasks, dragList, local = [], complete = [];
 
 //update the task list after every modification
 function updateList() {
+    localStorage.clear();
+    local = [];
+    complete = [];
     dragList = taskList.querySelectorAll('.task');
     tasks = [].slice.call(taskList.querySelectorAll('.task'), 0);
+    let ativas = document.querySelectorAll('li.task:not(.completo)');
+    ativas.forEach(e => {
+        local.push(e.children[0].children[1].innerText);
+        localStorage.setItem(`tasks`, local);
+    })
+    let completas = taskList.querySelectorAll('li.task.completo');
+    completas.forEach(e => {
+        complete.push(e.children[0].children[1].innerText);
+        localStorage.setItem(`complete`, complete);
+    })
 }
 
 //function to post the new task
-function postTask() {
-    let tasktext = create.value;
+function postTask(texto) {
+    let tasktext = texto;
 
     if (tasktext) {
-        let newTask = document.createElement('li');
+        newTask = document.createElement('li');
         newTask.classList.add('task');
         newTask.setAttribute('draggable', 'true');
         newTask.innerHTML = `
@@ -76,7 +89,6 @@ function sort() {
         } else {
             all.classList.add('sorted');
         }
-        
         sort();
     })
 })
@@ -85,7 +97,7 @@ post.addEventListener('click', () => {
     [all, active, completed].forEach(e => e.classList.remove('sorted'));
     all.classList.add('sorted');
     sort();
-    postTask();
+    postTask(create.value);
     create.value = '';
 })
 
@@ -98,12 +110,14 @@ window.addEventListener('keyup', evt => {
 //mark as completed
 let index;
 function completeTask() {
+    complete = [];
     if (index !== -1) {
         tasks[index].classList.toggle('completo')
         tasks[index].querySelector('.checa').classList.toggle('completo');
         let completas = taskList.querySelectorAll('li.task.completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
     }
+    updateList();
 }
 
 //marking as completed and removing tasks
@@ -115,6 +129,7 @@ taskList.addEventListener('click', evt => {
             let item = evt.target.parentElement;
             taskList.removeChild(item)
             itemLeft.innerText = `${taskList.children.length} item(s) left`;
+            updateList();
         }
         sort();
     } else {
@@ -124,6 +139,7 @@ taskList.addEventListener('click', evt => {
             let item = evt.target.parentElement;
             taskList.removeChild(item)
             itemLeft.innerText = `${taskList.children.length} item(s) left`;
+            updateList();
         }
         sort();
     }
@@ -135,6 +151,7 @@ clearCompleted.addEventListener('click', () => {
     let completedTasks = document.querySelectorAll('li.task.completo');
     completedTasks.forEach(e => taskList.removeChild(e));
     itemLeft.innerText = `${taskList.children.length} item(s) left`;
+    updateList();
 })
 
 //drag and drop to reorder functions and mutation observer
@@ -151,7 +168,7 @@ function handleDragStart(e) {
 function handleDragOver(e) {
     if (e.preventDefault) e.preventDefault();
 
-    e.dataTransfer.dropEffect = 'move'; 
+    e.dataTransfer.dropEffect = 'move';
     return false;
 }
 
@@ -160,7 +177,8 @@ function handleDragEnter(e) {
 }
 
 function handleDragLeave(e) {
-    this.classList.remove('over'); 
+    updateList();
+    this.classList.remove('over');
 }
 
 function handleDrop(e) {
@@ -174,14 +192,24 @@ function handleDrop(e) {
 }
 
 function handleDragEnd(e) {
+    updateList();
     dragList.forEach(each => {
         this.style.filter = 'brightness(100%)';
         each.classList.remove('over');
     })
-    updateList();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    //check if tasks exist and update them on the page
+    if ('tasks' in localStorage) {
+        let tasks = localStorage.getItem('tasks');
+        let cleaned = Array.from(tasks.split(','));
+        for (let i = 0; i < cleaned.length; i++) {
+            let texto = cleaned[i];
+            postTask(texto);
+        }
+    }
+
     let lista = document.querySelector('.tasks ul');
 
     let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;

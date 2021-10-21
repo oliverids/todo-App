@@ -179,6 +179,7 @@ clearCompleted.addEventListener('click', () => {
     completedTasks.forEach(e => taskList.removeChild(e));
     itemLeft.innerText = `${taskList.children.length} item(s) left`;
     updateList();
+    updateLS();
 })
 
 //drag and drop to reorder functions and mutation observer

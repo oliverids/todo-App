@@ -68,19 +68,11 @@
                         padding: 10px;
                         background: url("../img/icon-cross.svg") no-repeat center;
                         background-size: 70%;
-                        visibility: hidden;
-                        opacity: 0;
-                        transition: 0.3s ease-in-out;
+
                     }
 
                     &:hover {
                         color: var(--texto);
-
-                        .close {
-                            visibility: visible;
-                            opacity: 1;
-                            transition: 0.3s ease-in-out;
-                        }
 
                         .checa {
                             border: double 2px transparent;

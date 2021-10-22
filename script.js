@@ -5,12 +5,8 @@ tema.addEventListener('click', () => {
     tema.classList.toggle("ativo");
 })
 
-const post = document.getElementById('post'),
-    create = document.getElementById('create'),
-    taskList = document.querySelector('.tasks ul'),
-    itemLeft = document.querySelector('.clear p');
-let tasks, dragList, local, complete;
-
+let taskList = document.querySelector('.tasks ul'),
+    tasks, dragList, local, complete;
 //update the task list after every modification
 function updateList() {
     dragList = taskList.querySelectorAll('.task');
@@ -78,48 +74,7 @@ function postTask(texto, completo) {
     updateList();
 }
 
-let all = document.getElementById('all'),
-    active = document.getElementById('active'),
-    completed = document.getElementById('completed');
-
-//sorting through all, active and completed
-function sort() {
-    let completedTasks = document.querySelectorAll('li.task.completo'),
-        activeTasks = document.querySelectorAll('li.task:not(.completo)');
-
-    if (active.classList.contains('sorted')) {
-        completedTasks.forEach(e => e.style.display = 'none');
-        activeTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${activeTasks.length} active tasks`;
-    } else if (completed.classList.contains('sorted')) {
-        activeTasks.forEach(e => e.style.display = 'none');
-        completedTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${completedTasks.length} completed tasks`;
-    } else {
-        activeTasks.forEach(e => e.style.display = 'flex');
-        completedTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${taskList.children.length} item(s) left`;
-    }
-}
-
-//active class
-[all, active, completed].forEach(e => {
-    e.addEventListener('click', evt => {
-        [all, active, completed].forEach(e => e.classList.remove('sorted'));
-
-        if (evt.currentTarget == active) {
-            active.classList.add('sorted');
-
-        } else if (evt.currentTarget == completed) {
-            completed.classList.add('sorted');
-
-        } else {
-            all.classList.add('sorted');
-        }
-        sort();
-    })
-})
-
+//function that throws completed tasks to the end of the list
 function classify(tempo) {
     setTimeout(() => {
         let foramCompletas = tasks.filter(e => {
@@ -136,25 +91,6 @@ function classify(tempo) {
     }, tempo);
 }
 
-post.addEventListener('click', () => {
-    let valor = create.value;
-    if (valor.length) {
-        [all, active, completed].forEach(e => e.classList.remove('sorted'));
-        all.classList.add('sorted');
-        sort();
-        postTask(valor);
-        classify(0);
-        create.value = '';
-        updateLS();
-    }
-})
-
-window.addEventListener('keyup', evt => {
-    if (evt.keyCode == 13) {
-        post.click();
-    }
-})
-
 //mark as completed
 let index;
 function completeTask() {
@@ -165,7 +101,11 @@ function completeTask() {
         tasks[index].classList.add('move');
         tasks[index].querySelector('.checa').classList.toggle('completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
-        
+        if(tasks[index].classList.contains('completo')) {
+            tasks[index].removeAttribute('draggable');
+        } else {
+            tasks[index].setAttribute('draggable', 'draggable');
+        }
         classify(400);
     }
     updateList();
@@ -259,6 +199,8 @@ function handleDragEnd(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    let lista = document.querySelector('.tasks ul li');
+
     //check if user is using a device with touchscreen
     let notouchWarning = document.getElementById('notouch');
     if ('ontouchstart' in window) {
@@ -285,14 +227,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    let lista = document.querySelector('.tasks ul');
 
     let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
     let observer = new MutationObserver(function (mutations) {
         mutations.forEach(() => {
-            let tasks = document.querySelectorAll('.task');
-            tasks.forEach(item => {
+            let draggable = document.querySelectorAll('li.task:not(.completo)');
+            draggable.forEach(item => {
                 item.addEventListener('dragstart', handleDragStart, false);
                 item.addEventListener('dragenter', handleDragEnter, false);
                 item.addEventListener('dragover', handleDragOver, false);
@@ -302,10 +243,70 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-    observer.observe(lista, { childList: true });
+    observer.observe(taskList, { childList: true });
 });
 
+const post = document.getElementById('post'),
+    create = document.getElementById('create'),
+    itemLeft = document.querySelector('.clear p');
 
+post.addEventListener('click', () => {
+    let valor = create.value;
+    if (valor.length) {
+        [all, active, completed].forEach(e => e.classList.remove('sorted'));
+        all.classList.add('sorted');
+        sort();
+        postTask(valor);
+        classify(0);
+        create.value = '';
+        updateLS();
+    }
+})
 
+window.addEventListener('keyup', evt => {
+    if (evt.keyCode == 13) {
+        post.click();
+    }
+})
 
+let all = document.getElementById('all'),
+    active = document.getElementById('active'),
+    completed = document.getElementById('completed');
 
+//sorting through all, active and completed
+function sort() {
+    let completedTasks = document.querySelectorAll('li.task.completo'),
+        activeTasks = document.querySelectorAll('li.task:not(.completo)');
+
+    if (active.classList.contains('sorted')) {
+        completedTasks.forEach(e => e.style.display = 'none');
+        activeTasks.forEach(e => e.style.display = 'flex');
+        itemLeft.innerText = `${activeTasks.length} active tasks`;
+    } else if (completed.classList.contains('sorted')) {
+        activeTasks.forEach(e => e.style.display = 'none');
+        completedTasks.forEach(e => e.style.display = 'flex');
+        itemLeft.innerText = `${completedTasks.length} completed tasks`;
+    } else {
+        activeTasks.forEach(e => e.style.display = 'flex');
+        completedTasks.forEach(e => e.style.display = 'flex');
+        itemLeft.innerText = `${taskList.children.length} item(s) left`;
+    }
+}
+
+//active class
+[all, active, completed].forEach(e => {
+    e.addEventListener('click', evt => {
+        [all, active, completed].forEach(e => e.classList.remove('sorted'));
+
+        if (evt.currentTarget == active) {
+            active.classList.add('sorted');
+
+        } else if (evt.currentTarget == completed) {
+            completed.classList.add('sorted');
+
+        } else {
+            all.classList.add('sorted');
+        }
+        sort();
+    })
+})

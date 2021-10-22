@@ -42,7 +42,6 @@
             ul {
                 .task {
                     display: flex;
-                    // justify-content: space-between;
                     align-items: center;
                     font-size: 1rem;
                     padding: 16px;
@@ -90,10 +89,11 @@
 
                     &.completo {
                         text-decoration: line-through;
+                        filter: brightness(70%);
                         transition: all 0.3s ease-in-out;
 
                         &.move {
-                            filter: brightness(60%);
+                            filter: brightness(80%);
                             transition: all 0.3s ease-in-out;
                         }
                     }

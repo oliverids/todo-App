@@ -120,6 +120,22 @@ function sort() {
     })
 })
 
+function classify(tempo) {
+    setTimeout(() => {
+        let foramCompletas = tasks.filter(e => {
+            return e.classList.contains('completo');
+        });
+
+        let estaoAtivas = tasks.filter(e => {
+            return !e.classList.contains('completo');
+        });
+
+        taskList.innerHTML = '';
+        estaoAtivas.forEach(e => taskList.appendChild(e));
+        foramCompletas.forEach(e => taskList.appendChild(e));
+    }, tempo);
+}
+
 post.addEventListener('click', () => {
     let valor = create.value;
     if (valor.length) {
@@ -127,6 +143,7 @@ post.addEventListener('click', () => {
         all.classList.add('sorted');
         sort();
         postTask(valor);
+        classify(0);
         create.value = '';
         updateLS();
     }
@@ -144,21 +161,12 @@ function completeTask() {
     complete = [];
     let completas = taskList.querySelectorAll('li.task.completo');
     if (index !== -1) {
-        tasks[index].classList.toggle('completo')
+        tasks[index].classList.toggle('completo');
+        tasks[index].classList.add('move');
         tasks[index].querySelector('.checa').classList.toggle('completo');
         itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
-
-        let foramCompletas = tasks.filter(e => {
-            return e.classList.contains('completo');
-        });
-
-        let estaoAtivas = tasks.filter(e => {
-            return !e.classList.contains('completo');
-        });
-
-        taskList.innerHTML= '';
-        estaoAtivas.forEach(e => taskList.appendChild(e));
-        foramCompletas.forEach(e => taskList.appendChild(e));
+        
+        classify(400);
     }
     updateList();
     updateLS();
@@ -189,6 +197,10 @@ taskList.addEventListener('click', evt => {
         sort();
         updateLS();
     }
+    setTimeout(() => {
+        let completas = taskList.querySelectorAll('li.task.completo');
+        completas.forEach(e => e.classList.remove('move'))
+    }, 500);
 });
 
 //clear all completed

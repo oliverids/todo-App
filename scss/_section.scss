@@ -68,7 +68,6 @@
                         padding: 10px;
                         background: url("../img/icon-cross.svg") no-repeat center;
                         background-size: 70%;
-
                     }
 
                     &:hover {
@@ -85,6 +84,12 @@
 
                     &.completo {
                         text-decoration: line-through;
+                        transition: all 0.3s ease-in-out;
+
+                        &.move {
+                            filter: brightness(60%);
+                            transition: all 0.3s ease-in-out;
+                        }
                     }
 
                     &.completo:hover {

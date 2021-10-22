@@ -34,7 +34,7 @@
 
         .tasks {
             border-radius: 6px;
-            min-height: 300px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -42,13 +42,14 @@
             ul {
                 .task {
                     display: flex;
-                    justify-content: space-between;
+                    // justify-content: space-between;
                     align-items: center;
-                    font-size: 0.8rem;
+                    font-size: 1rem;
                     padding: 16px;
                     border-bottom: 1px solid var(--detalhe);
                     cursor: pointer;
                     color: var(--texto2);
+                    width: 100%;
 
                     &.over {
                         border: 1px solid var(--detalhe);
@@ -56,8 +57,13 @@
 
                     div {
                         display: flex;
-                        justify-content: space-between;
                         align-items: center;
+                        width: calc(100% - 20px);
+
+                        p {
+                            max-width: 85%;
+                            word-wrap: break-word;
+                        }
 
                         .checa {
                             margin-right: 1rem;

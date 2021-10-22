@@ -174,8 +174,8 @@ function completeTask() {
 
 //marking as completed and removing tasks
 taskList.addEventListener('click', evt => {
-    if (!evt.target.nodeName == 'LI') {
-        index = tasks.indexOf(evt.target.closest('li.task'));
+    if (evt.target.nodeName === 'LI') {
+        index = tasks.indexOf(evt.target);
         completeTask();
         if (evt.target.matches('.close')) {
             let item = evt.target.parentElement;
@@ -186,7 +186,7 @@ taskList.addEventListener('click', evt => {
         sort();
         updateLS();
     } else {
-        index = tasks.indexOf(evt.target);
+        index = tasks.indexOf(evt.target.closest('li.task'));
         completeTask();
         if (evt.target.matches('.close')) {
             let item = evt.target.parentElement;

@@ -44,23 +44,25 @@
             <div class="cinput">
                 <button id="open"><i class="fas fa-plus" aria-hidden="true"></i></button>
                 <div class="overlay">
-                    <button id="back"><i class="fas fa-chevron-left" aria-hidden="true"></i><span>Voltar</span></button>
-                    <div class="newtask">
-                        <input type="text" id="create" placeholder="Create a new todo...">
-                        <div class="select">
-                            <select name="categorias" id="createcateg" class="select">
-                                <option value="hide" hidden>Escolha uma categoria</option>
-                                <option value="pessoal">Pessoal</option>
-                                <option value="saude">Saúde</option>
-                                <option value="trabalho">Trabalho</option>
-                                <option value="escola">Escola</option>
-                                <option value="urgente">Urgente</option>
-                                <option value="financas">Finanças</option>
-                                <option value="comprar">Comprar</option>
-                            </select>
+                    <div class="container">
+                        <button id="back"><i class="fas fa-chevron-left" aria-hidden="true"></i><span>Voltar</span></button>
+                        <div class="newtask">
+                            <input type="text" id="create" placeholder="Create a new todo...">
+                            <div class="select">
+                                <select name="categorias" id="createcateg" class="select">
+                                    <option value="hide" hidden>Escolha uma categoria</option>
+                                    <option value="pessoal">Pessoal</option>
+                                    <option value="saude">Saúde</option>
+                                    <option value="trabalho">Trabalho</option>
+                                    <option value="escola">Escola</option>
+                                    <option value="urgente">Urgente</option>
+                                    <option value="financas">Finanças</option>
+                                    <option value="comprar">Comprar</option>
+                                </select>
+                            </div>
+                            <p id="warning">Adicione uma categoria!</p>
+                            <button id="post">Adicionar nova tarefa</button>
                         </div>
-                        <p id="warning">Adicione uma categoria!</p>
-                        <button id="post">Adicionar nova tarefa</button>
                     </div>
                 </div>
             </div>

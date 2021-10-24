@@ -96,41 +96,22 @@ export default function app() {
         updateList();
     }
 
-    //function that throws completed tasks to the end of the list
-    function classify(tempo) {
-        setTimeout(() => {
-            let foramCompletas = tasks.filter(e => {
-                return e.classList.contains('completo');
-            });
-
-            let estaoAtivas = tasks.filter(e => {
-                return !e.classList.contains('completo');
-            });
-
-            taskList.innerHTML = '';
-            estaoAtivas.forEach(e => taskList.appendChild(e));
-            foramCompletas.forEach(e => taskList.appendChild(e));
-        }, tempo);
-    }
-
     //mark as completed
     let index;
     function completeTask() {
         complete = [];
         let completas = taskList.querySelectorAll('li.task.completo');
         if (index !== -1) {
-            tasks[index].classList.toggle('completo');
             tasks[index].classList.add('move');
+            tasks[index].classList.toggle('completo');
+
             itemLeft.innerText = `${taskList.children.length - completas.length} tarefa(s) ativa(s)`;
             if (tasks[index].classList.contains('completo')) {
                 tasks[index].removeAttribute('draggable');
             } else {
                 tasks[index].setAttribute('draggable', 'draggable');
             }
-            classify(400);
         }
-        updateList();
-        updateLS();
     }
 
     //marking as completed and removing tasks
@@ -377,7 +358,6 @@ export default function app() {
             completed.classList.remove('sorted');
             sort();
             postTask(valor, categ);
-            classify(0);
             create.value = '';
             updateLS();
             overlay.classList.remove('ativo');

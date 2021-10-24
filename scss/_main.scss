@@ -29,6 +29,7 @@ main {
                         border: none;
                         color: #fff;
                         transition: border-bottom 0.4s ease-in-out;
+                        cursor: pointer;
 
                         &.ativo {
                             border-bottom: 1px solid #fff;

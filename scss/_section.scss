@@ -122,6 +122,7 @@
                     color: var(--texto2);
                     padding: 6px 0;
                     font-family: $josefin;
+                    visibility: hidden;
 
                     &:hover {
                         color: var(--texto);

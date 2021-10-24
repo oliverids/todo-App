@@ -50,6 +50,7 @@ function updateLS() {
     }
 }
 
+const itemLeft = document.querySelector('.clear p')
 //function to post the new task
 function postTask(texto, completo, categ) {
     let tasktext = texto,
@@ -173,6 +174,45 @@ clearCompleted.addEventListener('click', () => {
     updateLS();
 })
 
+//sorting through categories
+let showcateg = document.getElementById('showcateg');
+function showCateg(categSelected) {
+    let valor = categSelected;
+    //seleciona todas
+    let completedTasks = document.querySelectorAll('li.task.completo'),
+    activeTasks = document.querySelectorAll('li.task:not(.completo)');
+    //com categoria
+    let completas = document.querySelectorAll(`li.task.completo.${valor}`),
+    ativas = document.querySelectorAll(`li.task:not(.completo).${valor}`);
+
+    if(showcateg.value == 'todas') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'flex');
+        // console.log('todas')
+    } 
+    else if(showcateg.value == 'pessoal') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'saude') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'trabalho') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'escola') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'urgente') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'financas') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    } else if(showcateg.value == 'comprar') {
+        [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
+        [...completas, ...ativas].forEach(e => e.style.display = 'flex');
+    }
+}
+
 //drag and drop to reorder functions and mutation observer
 let dragged = null;
 function handleDragStart(e) {
@@ -276,14 +316,12 @@ function sort() {
         completedTasks.forEach(e => e.style.display = 'none');
         activeTasks.forEach(e => e.style.display = 'flex');
         itemLeft.innerText = `${activeTasks.length} tarefa(s) ativa(s)`;
-    } else if (completed.classList.contains('sorted')) {
+        clearCompleted.style.visibility = 'hidden';
+    } else  {
         activeTasks.forEach(e => e.style.display = 'none');
         completedTasks.forEach(e => e.style.display = 'flex');
         itemLeft.innerText = `${completedTasks.length} tarefa(s) completa(s)`;
-    } else {
-        activeTasks.forEach(e => e.style.display = 'flex');
-        completedTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
+        clearCompleted.style.visibility = 'visible';
     }
 }
 
@@ -294,18 +332,23 @@ function sort() {
 
         if (evt.currentTarget == active) {
             active.classList.add('sorted');
+            clearCompleted.style.visibility = 'hidden';
 
         } else if (evt.currentTarget == completed) {
             completed.classList.add('sorted');
-
+            clearCompleted.style.visibility = 'visible';
         }
         sort();
     })
 })
 
+showcateg.addEventListener('change', () => {
+    let valor = showcateg.value;
+    showCateg(valor);
+})
+
 const post = document.getElementById('post'),
-    createcateg = document.getElementById('createcateg'),
-    itemLeft = document.querySelector('.clear p');
+    createcateg = document.getElementById('createcateg');
 
 post.addEventListener('click', () => {
     let valor = create.value,

@@ -50,7 +50,20 @@
                 </div>
             </div>
 
-            <article class="tasks">
+            <div class="select tasksUl">
+                <select name="categorias" id="categorias" class="select">
+                    <option value="todas">Todas as tarefas</option>
+                    <option value="pessoal">Pessoal</option>
+                    <option value="saude">Saúde</option>
+                    <option value="trabalho">Trabalho</option>
+                    <option value="escola">Escola</option>
+                    <option value="urgente">Urgente</option>
+                    <option value="financas">Finanças</option>
+                    <option value="comprar">Comprar</option>
+                </select>
+            </div>
+
+            <article class="tasks">           
                 <ul></ul>
 
                 <div class="clear">
@@ -61,8 +74,7 @@
 
             <article class="sort">
                 <ul>
-                    <li><button class="sorted" id="all">All</button></li>
-                    <li><button id="active">Active</button></li>
+                    <li><button id="active" class="sorted">Active</button></li>
                     <li><button id="completed">Completed</button></li>
                 </ul>
                 <p id="notouch">Drag and drop to reorder list</p>

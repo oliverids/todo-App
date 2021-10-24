@@ -5,6 +5,16 @@ tema.addEventListener('click', () => {
     tema.classList.toggle("ativo");
 })
 
+const open = document.getElementById('open'),
+    overlay = document.querySelector('.overlay'),
+    back = document.getElementById('back');
+open.addEventListener('click', () => {
+    overlay.classList.add('ativo');
+})
+back.addEventListener('click', () => {
+    overlay.classList.remove('ativo');
+})
+
 let taskList = document.querySelector('.tasks ul'),
     tasks, dragList, local, complete;
 //update the task list after every modification
@@ -253,31 +263,7 @@ window.addEventListener('DOMContentLoaded', () => {
     observer.observe(taskList, { childList: true });
 });
 
-const post = document.getElementById('post'),
-    create = document.getElementById('create'),
-    itemLeft = document.querySelector('.clear p');
-
-post.addEventListener('click', () => {
-    let valor = create.value;
-    if (valor.length) {
-        [all, active, completed].forEach(e => e.classList.remove('sorted'));
-        all.classList.add('sorted');
-        sort();
-        postTask(valor);
-        classify(0);
-        create.value = '';
-        updateLS();
-    }
-})
-
-window.addEventListener('keyup', evt => {
-    if (evt.keyCode == 13) {
-        post.click();
-    }
-})
-
-let all = document.getElementById('all'),
-    active = document.getElementById('active'),
+let active = document.getElementById('active'),
     completed = document.getElementById('completed');
 
 //sorting through all, active and completed
@@ -301,9 +287,9 @@ function sort() {
 }
 
 //active class
-[all, active, completed].forEach(e => {
+[active, completed].forEach(e => {
     e.addEventListener('click', evt => {
-        [all, active, completed].forEach(e => e.classList.remove('sorted'));
+        [active, completed].forEach(e => e.classList.remove('sorted'));
 
         if (evt.currentTarget == active) {
             active.classList.add('sorted');
@@ -311,9 +297,31 @@ function sort() {
         } else if (evt.currentTarget == completed) {
             completed.classList.add('sorted');
 
-        } else {
-            all.classList.add('sorted');
         }
         sort();
     })
+})
+
+const post = document.getElementById('post'),
+    create = document.getElementById('create'),
+    itemLeft = document.querySelector('.clear p');
+
+post.addEventListener('click', () => {
+    let valor = create.value;
+    if (valor.length) {
+        [active, completed].forEach(e => e.classList.remove('sorted'));
+        all.classList.add('sorted');
+        sort();
+        postTask(valor);
+        classify(0);
+        create.value = '';
+        updateLS();
+        overlay.classList.remove('ativo')
+    }
+})
+
+window.addEventListener('keyup', evt => {
+    if (evt.keyCode == 13) {
+        post.click();
+    }
 })

@@ -4,7 +4,7 @@ $check: linear-gradient(#57ddff, #c058f3);
 :root {
     --fundo: hsl(235, 21%, 11%);
     --fundolista: hsl(235, 24%, 19%);
-    --texto: hsl(234, 39%, 85%);
+    --texto: hsl(235, 13%, 82%);
     --texto2: hsl(234, 11%, 52%);
     --detalhe: hsl(233, 14%, 35%);
     --azul: hsl(220, 70%, 48%);
@@ -23,18 +23,8 @@ body {
     background-color: var(--fundo);
     color: var(--texto);
 
-    .cinput,
-    .tasks {
-        background-color: var(--fundolista);
-    }
-
     &.claro {
         background-color: var(--fundo);
         color: var(--texto);
-
-        .cinput,
-        .tasks {
-            background-color: var(--fundolista);
-        }
     }
 }

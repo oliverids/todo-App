@@ -29,6 +29,17 @@ body {
     font-size: 16px;
     background-color: var(--fundo);
     position: relative;
+    font-family: $josefin;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--detalhe);
+    height: 10px;
+    border-radius: 10px;
 }
 
 .container {
@@ -82,6 +93,40 @@ p {
             left: 50%;
             margin-left: -5px;
             margin-top: -6px;
+        }
+    }
+}
+
+.select {
+    select {
+        width: 100%;
+        border: 1px solid var(--detalhe);
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 4px;
+        color: var(--texto2);
+        font-family: $josefin;
+        background: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: linear-gradient(45deg, transparent 50%, var(--texto2) 50%),
+            linear-gradient(135deg, var(--texto2) 50%, transparent 50%);
+        background-position: calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px), 100% 0;
+        background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+        background-repeat: no-repeat;
+
+        option {
+            background: var(--fundolista);
+            border: none;
+            color: var(--texto);
+        }
+
+        &::-ms-expand {
+            display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
         }
     }
 }

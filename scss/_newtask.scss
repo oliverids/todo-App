@@ -60,6 +60,10 @@ body {
                         flex-direction: column;
                         margin-top: 32px;
 
+                        select {
+                            margin: 2rem 0;
+                        }
+
                         #create {
                             padding: 12px;
                             border-radius: 4px 4px 0 0;
@@ -75,41 +79,9 @@ body {
                             }
                         }
 
-                        .select {
-                            select {
-                                margin: 2rem 0;
-                                width: 100%;
-                                background: red;
-                                border: 1px solid var(--detalhe);
-                                padding: 12px;
-                                font-size: 1rem;
-                                border-radius: 4px;
-                                color: var(--texto2);
-                                font-family: $josefin;
-                                background: none;
-                                -webkit-box-sizing: border-box;
-                                -moz-box-sizing: border-box;
-                                box-sizing: border-box;
-                                -webkit-appearance: none;
-                                -moz-appearance: none;
-                                background-image: linear-gradient(45deg, transparent 50%, var(--texto2) 50%),
-                                    linear-gradient(135deg, var(--texto2) 50%, transparent 50%);
-                                background-position: calc(100% - 20px) calc(1em + 2px),
-                                    calc(100% - 15px) calc(1em + 2px), 100% 0;
-                                background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
-                                background-repeat: no-repeat;
-
-                                option {
-                                    background: var(--fundolista);
-                                    border: none;
-                                    color: var(--texto);
-                                }
-                            }
-                        }
-
                         #post {
                             font-family: $josefin;
-                            color: var(--texto);
+                            color: #fff;
                             padding: 1rem 0;
                             font-size: 1.2rem;
                             background: var(--azul);
@@ -121,33 +93,3 @@ body {
         }
     }
 }
-
-// .cinput {
-//     margin-bottom: 1.4rem;
-//     padding: 16px;
-//     border-radius: 6px;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-
-//     #create {
-//         width: 100%;
-//         background: none;
-//         border: none;
-//         color: var(--texto);
-//         padding: 6px 4px;
-//         font-family: $josefin;
-//         font-size: 1rem;
-
-//         &::placeholder {
-//             color: var(--texto2);
-//         }
-//     }
-
-//     #post {
-//         padding: 6px;
-//         font-size: 1.2rem;
-//         margin-right: 12px;
-//         color: var(--texto2);
-//     }
-// }

@@ -180,34 +180,34 @@ function showCateg(categSelected) {
     let valor = categSelected;
     //seleciona todas
     let completedTasks = document.querySelectorAll('li.task.completo'),
-    activeTasks = document.querySelectorAll('li.task:not(.completo)');
+        activeTasks = document.querySelectorAll('li.task:not(.completo)');
     //com categoria
     let completas = document.querySelectorAll(`li.task.completo.${valor}`),
-    ativas = document.querySelectorAll(`li.task:not(.completo).${valor}`);
+        ativas = document.querySelectorAll(`li.task:not(.completo).${valor}`);
 
-    if(showcateg.value == 'todas') {
+    if (showcateg.value == 'todas') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'flex');
         // console.log('todas')
-    } 
-    else if(showcateg.value == 'pessoal') {
+    }
+    else if (showcateg.value == 'pessoal') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'saude') {
+    } else if (showcateg.value == 'saude') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'trabalho') {
+    } else if (showcateg.value == 'trabalho') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'escola') {
+    } else if (showcateg.value == 'escola') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'urgente') {
+    } else if (showcateg.value == 'urgente') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'financas') {
+    } else if (showcateg.value == 'financas') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
-    } else if(showcateg.value == 'comprar') {
+    } else if (showcateg.value == 'comprar') {
         [...completedTasks, ...activeTasks].forEach(e => e.style.display = 'none');
         [...completas, ...ativas].forEach(e => e.style.display = 'flex');
     }
@@ -220,7 +220,7 @@ function handleDragStart(e) {
     dragged = this;
 
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', this.innerHTML);
+    e.dataTransfer.setData('text/html', this.outerHTML);
     e.dataTransfer.setData('text/text', 'id');
 }
 
@@ -244,8 +244,8 @@ function handleDrop(e) {
     if (e.preventDefault) e.preventDefault();
 
     if (dragged != this) {
-        dragged.innerHTML = this.innerHTML;
-        this.innerHTML = e.dataTransfer.getData('text/html');
+        dragged.outerHTML = this.outerHTML;
+        this.outerHTML = e.dataTransfer.getData('text/html');
     }
     return false;
 }
@@ -253,12 +253,29 @@ function handleDrop(e) {
 function handleDragEnd(e) {
     updateList();
     dragList.forEach(each => {
-        this.style.filter = 'brightness(100%)';
+        each.style.filter = 'brightness(100%)';
         each.classList.remove('over');
     })
 }
 
+setTimeout(() => {
+    let draggable = document.querySelectorAll('li.task:not(.completo)');
+    draggable.forEach(item => {
+        item.addEventListener('dragstart', handleDragStart, false);
+        item.addEventListener('dragenter', handleDragEnter, false);
+        item.addEventListener('dragover', handleDragOver, false);
+        item.addEventListener('dragleave', handleDragLeave, false);
+        item.addEventListener('drop', handleDrop, false);
+        item.addEventListener('dragend', handleDragEnd, false);
+    });
+}, 400);
+
 window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        let draggable = document.querySelectorAll('li.task:not(.completo)');
+
+        console.log(draggable)
+    }, 400);
     //check if user is using a device with touchscreen
     let notouchWarning = document.getElementById('notouch');
     if ('ontouchstart' in window) {
@@ -288,17 +305,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
-    let observer = new MutationObserver(function (mutations) {
+    let observer = new MutationObserver(mutations => {
         mutations.forEach(() => {
-            let draggable = document.querySelectorAll('li.task:not(.completo)');
-            draggable.forEach(item => {
-                item.addEventListener('dragstart', handleDragStart, false);
-                item.addEventListener('dragenter', handleDragEnter, false);
-                item.addEventListener('dragover', handleDragOver, false);
-                item.addEventListener('dragleave', handleDragLeave, false);
-                item.addEventListener('drop', handleDrop, false);
-                item.addEventListener('dragend', handleDragEnd, false);
-            });
+            setTimeout(() => {
+                let draggable = document.querySelectorAll('li.task:not(.completo)');
+                draggable.forEach(item => {
+                    item.addEventListener('dragstart', handleDragStart, false);
+                    item.addEventListener('dragenter', handleDragEnter, false);
+                    item.addEventListener('dragover', handleDragOver, false);
+                    item.addEventListener('dragleave', handleDragLeave, false);
+                    item.addEventListener('drop', handleDrop, false);
+                    item.addEventListener('dragend', handleDragEnd, false);
+                });
+            }, 400);
         });
     });
     observer.observe(taskList, { childList: true });
@@ -317,7 +336,7 @@ function sort() {
         activeTasks.forEach(e => e.style.display = 'flex');
         itemLeft.innerText = `${activeTasks.length} tarefa(s) ativa(s)`;
         clearCompleted.style.visibility = 'hidden';
-    } else  {
+    } else {
         activeTasks.forEach(e => e.style.display = 'none');
         completedTasks.forEach(e => e.style.display = 'flex');
         itemLeft.innerText = `${completedTasks.length} tarefa(s) completa(s)`;
@@ -366,7 +385,7 @@ post.addEventListener('click', () => {
         overlay.classList.remove('ativo');
 
         if (!overlay.classList.contains('ativo')) {
-           let options = Array.from(createcateg.querySelectorAll('option'));
+            let options = Array.from(createcateg.querySelectorAll('option'));
             createcateg.value = options[0].value;
         }
     } else {

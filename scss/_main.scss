@@ -14,10 +14,52 @@ main {
             align-items: center;
             color: hsl(0, 0%, 98%);
 
-            #nome {
-                margin-top: 4px;
-                font-size: 2rem;
-                font-weight: 700;
+            .hello {
+                .user {
+                    display: flex;
+                    align-items: center;
+
+                    #nome {
+                        width: auto;
+                        max-width: 160px;
+                        margin-top: 4px;
+                        font-size: 2rem;
+                        font-weight: 700;
+                        background: none;
+                        border: none;
+                        color: #fff;
+                        transition: border-bottom 0.4s ease-in-out;
+
+                        &.ativo {
+                            border-bottom: 1px solid #fff;
+                            transition: border-bottom 0.4s ease-in-out;
+                        }
+                    }
+
+                    #changename {
+                        margin-left: 12px;
+                        width: 28px;
+                        height: 28px;
+                        border-radius: 50%;
+                        background: hsl(0, 0%, 98%);
+                        color: var(--azul);
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        opacity: 0.4;
+                        transition: 0.3s ease-in-out;
+
+                        &.ativo {
+                            opacity: 1;
+                            visibility: visible;
+                            transition: 0.3s ease-in-out;
+                        }
+                    }
+
+                    &:hover #changename {
+                        opacity: 1;
+                        visibility: visible;
+                        transition: 0.3s ease-in-out;
+                    }
+                }
             }
 
             #tema {

@@ -1,16 +1,6 @@
 export default function load() {
     window.addEventListener('DOMContentLoaded', () => {
-        const time = document.getElementById('time');
-        let data = new Date(),
-            hora = data.getHours();
 
-        if (hora < 12) {
-            time.innerText = 'Bom dia,';
-        } else if (hora < 18) {
-            time.innerText = 'Boa tarde,';
-        } else {
-            time.innerText = 'Boa noite,';
-        }
 
         if (localStorage.getItem("username") === null) {
             localStorage.clear();
@@ -32,9 +22,9 @@ export default function load() {
                 let user = input.value;
                 if (user.length) {
                     localStorage.setItem('username', user);
-                    const nome = document.getElementById('nome');
-                    nome.innerText = user;
+                    setTimeout(() => {
                     [loader, info, titulo].forEach(e => e.classList.remove("show"))
+                    }, 100);
                 }
             })
 
@@ -44,5 +34,8 @@ export default function load() {
                 }
             })
         }
+        const nome = document.getElementById('nome');
+        nome.value = localStorage.getItem('username');
+        nome.disabled = true;
     })
 }

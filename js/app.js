@@ -1,11 +1,4 @@
 export default function app() {
-    //themes
-    const tema = document.getElementById('tema');
-    tema.addEventListener('click', () => {
-        document.body.classList.toggle('claro');
-        tema.classList.toggle("ativo");
-    })
-
     const open = document.getElementById('open'),
         overlay = document.querySelector('.overlay'),
         create = document.getElementById('create'),

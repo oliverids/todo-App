@@ -8,13 +8,6 @@ main {
     .container {
         flex-direction: column;
 
-        h1 {
-            color: hsl(0, 0%, 98%);
-            font-size: 0.8rem;
-            letter-spacing: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
         .greeting {
             display: flex;
             justify-content: space-between;

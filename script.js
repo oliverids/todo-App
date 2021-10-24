@@ -23,7 +23,7 @@ function updateLS() {
         localStorage.removeItem('complete');
     } else {
         completas.forEach(e => {
-            complete.push(e.children[0].children[1].innerText);
+            complete.push(e.outerHTML);
             localStorage.setItem(`complete`, complete);
         })
     }
@@ -32,7 +32,7 @@ function updateLS() {
         localStorage.removeItem('tasks');
     } else {
         ativas.forEach(e => {
-            local.push(e.children[0].children[1].innerText);
+            local.push(e.outerHTML);
             localStorage.setItem(`tasks`, local);
         })
     }
@@ -71,6 +71,15 @@ function postTask(texto, completo) {
         taskList.append(newTask);
         itemLeft.innerText = `${taskList.children.length} item(s) left`;
     }
+    updateList();
+}
+
+function postSavedTask(html) {
+    let fromLocalStorage = html;
+    let savedTask = document.createElement('li');
+    taskList.append(savedTask);
+    savedTask.outerHTML = `${fromLocalStorage}`;
+    itemLeft.innerText = `${taskList.children.length} item(s) left`;
     updateList();
 }
 
@@ -199,8 +208,6 @@ function handleDragEnd(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let lista = document.querySelector('.tasks ul li');
-
     //check if user is using a device with touchscreen
     let notouchWarning = document.getElementById('notouch');
     if ('ontouchstart' in window) {
@@ -215,7 +222,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let cleaned = Array.from(tasks.split(','));
         for (let i = 0; i < cleaned.length; i++) {
             let texto = cleaned[i];
-            postTask(texto);
+            postSavedTask(texto)
         }
     }
     if ('complete' in localStorage) {
@@ -223,7 +230,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let cleaned = Array.from(complete.split(','));
         for (let i = 0; i < cleaned.length; i++) {
             let texto = cleaned[i];
-            postTask(texto, 'completo');
+            postSavedTask(texto)
         }
     }
 

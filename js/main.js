@@ -12,13 +12,6 @@ export default function mainSection() {
         time.innerText = 'Boa noite,';
     }
 
-    //tema
-    const tema = document.getElementById('tema');
-    tema.addEventListener('click', () => {
-        document.body.classList.toggle('claro');
-        tema.classList.toggle("ativo");
-    })
-
     //nome
     const changename = document.getElementById('changename'),
         novoNome = document.getElementById('nome');
@@ -36,6 +29,30 @@ export default function mainSection() {
             changename.classList.remove('ativo');
             let novoUsername = novoNome.value;
             localStorage.setItem('username', novoUsername)
+        }
+    })
+
+    //tema
+    window.addEventListener("DOMContentLoaded", () => {
+        const tema = document.getElementById('tema');
+        tema.addEventListener('click', () => {
+            document.body.classList.toggle('claro');
+            tema.classList.toggle("ativo");
+
+            if (document.body.classList.contains("claro")) {
+                localStorage.setItem('tema', 'claro');
+            } else {
+                localStorage.setItem('tema', 'escuro');
+            }
+        })
+
+        let temaSalvo = localStorage.getItem('tema');
+        console.log(temaSalvo)
+
+        if (temaSalvo == 'escuro') {
+            document.body.classList.remove("claro");
+        } else {
+            document.body.classList.add("claro");
         }
     })
 }

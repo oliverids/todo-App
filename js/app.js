@@ -19,7 +19,7 @@ export default function app() {
     })
 
     window.addEventListener('click', e => {
-        if(!overlay.contains(e.target) && !open.contains(e.target)) {
+        if (!overlay.contains(e.target) && !open.contains(e.target)) {
             overlay.classList.remove('ativo');
         }
     })
@@ -65,7 +65,7 @@ export default function app() {
             categoria = categ;
 
         if (tasktext && classe) {
-            newTask = document.createElement('li');
+            let newTask = document.createElement('li');
             newTask.classList.add('task');
             newTask.setAttribute('draggable', 'true');
             newTask.classList.add(completo)
@@ -278,6 +278,10 @@ export default function app() {
     }, 400);
 
     window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            let lista = document.querySelectorAll('li.task:not(.completo)');
+            itemLeft.innerText = `${lista.length} tarefa(s) ativa(s)`;
+        }, 100);
         //check if user is using a device with touchscreen
         let notouchWarning = document.getElementById('notouch');
         if ('ontouchstart' in window) {
@@ -303,7 +307,6 @@ export default function app() {
                 postSavedTask(texto)
             }
         }
-
 
         let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 

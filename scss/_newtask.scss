@@ -60,10 +60,6 @@ body {
                         flex-direction: column;
                         margin-top: 32px;
 
-                        select {
-                            margin: 2rem 0;
-                        }
-
                         #create {
                             padding: 12px;
                             border-radius: 4px 4px 0 0;
@@ -73,13 +69,30 @@ body {
                             font-size: 1rem;
                             color: var(--texto);
                             font-family: $josefin;
+                            margin-bottom: 2rem;
 
                             &::placeholder {
                                 color: var(--texto2);
                             }
                         }
 
+                        #warning {
+                            color: #ff5757;
+                            visibility: hidden;
+                            height: 0;
+                            margin: 0;
+                            transition: all 0.3s ease-in-out;
+
+                            &.ativo {
+                                margin-top: 0.8rem;
+                                height: auto;
+                                visibility: visible;
+                                transition: all 0.3s ease-in-out;
+                            }
+                        }
+
                         #post {
+                            margin-top: 2rem;
                             font-family: $josefin;
                             color: #fff;
                             padding: 1rem 0;

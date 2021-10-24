@@ -44,12 +44,44 @@
                     padding: 16px;
                     border-bottom: 1px solid var(--detalhe);
                     cursor: pointer;
-                    color: var(--texto2);
+                    color: var(--texto);
                     width: 100%;
 
+                    &.pessoal {
+                        border-left: 8px solid #9A5BFF;
+                    }
+
+                    &.saude {
+                        border-left: 8px solid #5B93FF;
+                    }
+
+                    &.trabalho {
+                        border-left: 8px solid #E9B530;
+                    }
+
+                    &.escola {
+                        border-left: 8px solid #EC8814;
+                    }
+
+                    &.urgente {
+                        border-left: 8px solid #CE1515;
+                    }
+
+                    &.financas {
+                        border-left: 8px solid #4D8B57;
+                    }
+
+                    &.comprar {
+                        border-left: 8px solid #DE25C0;
+                    }
 
                     &.over {
                         border: 1px solid var(--detalhe);
+                    }
+
+                    &.completo {
+                        text-decoration: line-through;
+                        filter: brightness(80%);
                     }
 
                     div {
@@ -61,56 +93,12 @@
                             max-width: 85%;
                             word-wrap: break-word;
                         }
-
-                        .checa {
-                            margin-right: 1rem;
-                        }
                     }
 
                     .close {
                         padding: 10px;
                         background: url("../img/icon-cross.svg") no-repeat center;
                         background-size: 70%;
-                    }
-
-                    &:hover {
-                        color: var(--texto);
-
-                        .checa {
-                            border: double 2px transparent;
-                            background-image: linear-gradient(var(--fundolista), var(--fundolista)),
-                                radial-gradient(circle at top left, #57ddff, #c058f3);
-                            background-origin: border-box;
-                            background-clip: content-box, border-box;
-                        }
-                    }
-
-                    &.completo {
-                        text-decoration: line-through;
-                        filter: brightness(70%);
-                        transition: all 0.3s ease-in-out;
-
-                        &.move {
-                            filter: brightness(80%);
-                            transition: all 0.3s ease-in-out;
-                        }
-                    }
-
-                    &.completo:hover {
-                        .checa {
-                            background: linear-gradient(#57ddff, #c058f3);
-                            border: none;
-
-                            &::after {
-                                position: absolute;
-                                content: url("../img/icon-check.svg");
-                                width: 10px;
-                                top: 50%;
-                                left: 50%;
-                                margin-left: -5px;
-                                margin-top: -6px;
-                            }
-                        }
                     }
                 }
             }

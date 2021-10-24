@@ -7,9 +7,11 @@ tema.addEventListener('click', () => {
 
 const open = document.getElementById('open'),
     overlay = document.querySelector('.overlay'),
+    create = document.getElementById('create'),
     back = document.getElementById('back');
 open.addEventListener('click', () => {
     overlay.classList.add('ativo');
+    setTimeout(() => create.focus(), 100);
 })
 back.addEventListener('click', () => {
     overlay.classList.remove('ativo');
@@ -49,9 +51,10 @@ function updateLS() {
 }
 
 //function to post the new task
-function postTask(texto, completo) {
-    let tasktext = texto;
-    let classe = completo;
+function postTask(texto, completo, categ) {
+    let tasktext = texto,
+        classe = completo,
+        categoria = categ;
 
     if (tasktext && classe) {
         newTask = document.createElement('li');
@@ -60,26 +63,25 @@ function postTask(texto, completo) {
         newTask.classList.add(completo)
         newTask.innerHTML = `
         <div>
-          <button class="checa completo"></button>
           <p>${tasktext}</p>
         </div>
         <button class="close"></button>
         `
         taskList.append(newTask);
-        itemLeft.innerText = `${taskList.children.length} item(s) left`;
+        itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
     } else {
         newTask = document.createElement('li');
         newTask.classList.add('task');
+        newTask.classList.add(categoria);
         newTask.setAttribute('draggable', 'true');
         newTask.innerHTML = `
         <div>
-          <button class="checa"></button>
           <p>${tasktext}</p>
         </div>
         <button class="close"></button>
         `
         taskList.append(newTask);
-        itemLeft.innerText = `${taskList.children.length} item(s) left`;
+        itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
     }
     updateList();
 }
@@ -89,7 +91,7 @@ function postSavedTask(html) {
     let savedTask = document.createElement('li');
     taskList.append(savedTask);
     savedTask.outerHTML = `${fromLocalStorage}`;
-    itemLeft.innerText = `${taskList.children.length} item(s) left`;
+    itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
     updateList();
 }
 
@@ -118,9 +120,8 @@ function completeTask() {
     if (index !== -1) {
         tasks[index].classList.toggle('completo');
         tasks[index].classList.add('move');
-        tasks[index].querySelector('.checa').classList.toggle('completo');
-        itemLeft.innerText = `${taskList.children.length - completas.length} item(s) left`;
-        if(tasks[index].classList.contains('completo')) {
+        itemLeft.innerText = `${taskList.children.length - completas.length} tarefa(s) ativa(s)`;
+        if (tasks[index].classList.contains('completo')) {
             tasks[index].removeAttribute('draggable');
         } else {
             tasks[index].setAttribute('draggable', 'draggable');
@@ -139,7 +140,7 @@ taskList.addEventListener('click', evt => {
         if (evt.target.matches('.close')) {
             let item = evt.target.parentElement;
             taskList.removeChild(item)
-            itemLeft.innerText = `${taskList.children.length} item(s) left`;
+            itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
             updateList();
         }
         sort();
@@ -150,7 +151,7 @@ taskList.addEventListener('click', evt => {
         if (evt.target.matches('.close')) {
             let item = evt.target.parentElement;
             taskList.removeChild(item)
-            itemLeft.innerText = `${taskList.children.length} item(s) left`;
+            itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
             updateList();
         }
         sort();
@@ -167,7 +168,7 @@ let clearCompleted = document.getElementById('clear');
 clearCompleted.addEventListener('click', () => {
     let completedTasks = document.querySelectorAll('li.task.completo');
     completedTasks.forEach(e => taskList.removeChild(e));
-    itemLeft.innerText = `${taskList.children.length} item(s) left`;
+    itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
     updateList();
     updateLS();
 })
@@ -274,15 +275,15 @@ function sort() {
     if (active.classList.contains('sorted')) {
         completedTasks.forEach(e => e.style.display = 'none');
         activeTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${activeTasks.length} active tasks`;
+        itemLeft.innerText = `${activeTasks.length} tarefa(s) ativa(s)`;
     } else if (completed.classList.contains('sorted')) {
         activeTasks.forEach(e => e.style.display = 'none');
         completedTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${completedTasks.length} completed tasks`;
+        itemLeft.innerText = `${completedTasks.length} tarefa(s) completa(s)`;
     } else {
         activeTasks.forEach(e => e.style.display = 'flex');
         completedTasks.forEach(e => e.style.display = 'flex');
-        itemLeft.innerText = `${taskList.children.length} item(s) left`;
+        itemLeft.innerText = `${taskList.children.length} tarefa(s) ativa(s)`;
     }
 }
 
@@ -303,20 +304,30 @@ function sort() {
 })
 
 const post = document.getElementById('post'),
-    create = document.getElementById('create'),
+    createcateg = document.getElementById('createcateg'),
     itemLeft = document.querySelector('.clear p');
 
 post.addEventListener('click', () => {
-    let valor = create.value;
-    if (valor.length) {
-        [active, completed].forEach(e => e.classList.remove('sorted'));
-        all.classList.add('sorted');
+    let valor = create.value,
+        categ = createcateg.value,
+        warn = document.getElementById("warning");
+
+    if (valor.length && categ !== 'hide') {
+        warn.classList.remove('ativo');
+        completed.classList.remove('sorted');
         sort();
-        postTask(valor);
+        postTask(valor, categ);
         classify(0);
         create.value = '';
         updateLS();
-        overlay.classList.remove('ativo')
+        overlay.classList.remove('ativo');
+
+        if (!overlay.classList.contains('ativo')) {
+           let options = Array.from(createcateg.querySelectorAll('option'));
+            createcateg.value = options[0].value;
+        }
+    } else {
+        warn.classList.add('ativo');
     }
 })
 

@@ -19,7 +19,6 @@ export default function load() {
                 titulo = document.getElementById('titulo'),
                 info = document.getElementById('info');
 
-
             loader.classList.add('show');
             titulo.classList.add('show');
             setTimeout(() => {

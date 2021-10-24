@@ -18,6 +18,12 @@ export default function app() {
         overlay.classList.remove('ativo');
     })
 
+    window.addEventListener('click', e => {
+        if(!overlay.contains(e.target) && !open.contains(e.target)) {
+            overlay.classList.remove('ativo');
+        }
+    })
+
     let taskList = document.querySelector('.tasks ul'),
         tasks, dragList, local, complete;
     //update the task list after every modification

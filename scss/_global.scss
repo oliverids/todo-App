@@ -1,6 +1,8 @@
 @import "tema";
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
+$josefin: "Josefin Sans", sans-serif;;
+
 * {
     margin: 0;
     padding: 0;
@@ -20,21 +22,13 @@ html {
 }
 
 *:focus {
-    outline-color: $azul;
+    outline-color: var(--azul);
 }
 
 body {
     font-size: 16px;
-    font-family: "Josefin Sans", sans-serif;
     background-color: var(--fundo);
-    background-image: url("../img/bg-desktop-dark.jpg");
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: fixed;
-
-    &.claro {
-        background-image: url("../img/bg-desktop-light.jpg");
-    }
+    position: relative;
 }
 
 .container {

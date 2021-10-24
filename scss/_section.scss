@@ -2,35 +2,35 @@
     .container {
         flex-direction: column;
 
-        .cinput {
-            margin-bottom: 1.4rem;
-            padding: 16px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        // .cinput {
+        //     margin-bottom: 1.4rem;
+        //     padding: 16px;
+        //     border-radius: 6px;
+        //     display: flex;
+        //     justify-content: space-between;
+        //     align-items: center;
 
-            #create {
-                width: 100%;
-                background: none;
-                border: none;
-                color: var(--texto);
-                padding: 6px 4px;
-                font-family: "Josefin Sans", sans-serif;
-                font-size: 1rem;
+        //     #create {
+        //         width: 100%;
+        //         background: none;
+        //         border: none;
+        //         color: var(--texto);
+        //         padding: 6px 4px;
+        //         font-family: "Josefin Sans", sans-serif;
+        //         font-size: 1rem;
 
-                &::placeholder {
-                    color: var(--texto2);
-                }
-            }
+        //         &::placeholder {
+        //             color: var(--texto2);
+        //         }
+        //     }
 
-            #post {
-                padding: 6px;
-                font-size: 1.2rem;
-                margin-right: 12px;
-                color: var(--texto2);
-            }
-        }
+        //     #post {
+        //         padding: 6px;
+        //         font-size: 1.2rem;
+        //         margin-right: 12px;
+        //         color: var(--texto2);
+        //     }
+        // }
 
         .tasks {
             border-radius: 6px;

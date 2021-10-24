@@ -1,4 +1,4 @@
-$azul: hsl(220, 98%, 61%);
+// $azul: hsl(220, 70%, 48%);
 $check: linear-gradient(#57ddff, #c058f3);
 
 :root {
@@ -7,6 +7,7 @@ $check: linear-gradient(#57ddff, #c058f3);
     --texto: hsl(234, 39%, 85%);
     --texto2: hsl(234, 11%, 52%);
     --detalhe: hsl(233, 14%, 35%);
+    --azul: hsl(220, 70%, 48%);
 }
 
 .claro {
@@ -15,13 +16,15 @@ $check: linear-gradient(#57ddff, #c058f3);
     --texto: hsl(235, 19%, 35%);
     --texto2: hsl(236, 9%, 61%);
     --detalhe: hsl(233, 11%, 84%);
+    --azul: hsl(220, 81%, 54%);
 }
 
 body {
     background-color: var(--fundo);
     color: var(--texto);
 
-    .cinput, .tasks {
+    .cinput,
+    .tasks {
         background-color: var(--fundolista);
     }
 
@@ -29,7 +32,8 @@ body {
         background-color: var(--fundo);
         color: var(--texto);
 
-        .cinput, .tasks {
+        .cinput,
+        .tasks {
             background-color: var(--fundolista);
         }
     }

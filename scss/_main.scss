@@ -1,22 +1,40 @@
 main {
     padding: 3rem 0;
+    background-color: var(--azul);
+    margin-bottom: 24px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.15);
+    font-family: $josefin;
 
     .container {
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
 
         h1 {
             color: hsl(0, 0%, 98%);
+            font-size: 0.8rem;
             letter-spacing: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        #tema {
-            width: 46px;
-            height: 46px;
-            background: url("../img/icon-moon.svg") no-repeat center;
+        .greeting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: hsl(0, 0%, 98%);
 
-            &.ativo {
-                background: url("../img/icon-sun.svg") no-repeat center;
+            #nome {
+                margin-top: 4px;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            #tema {
+                width: 46px;
+                height: 46px;
+                background: url("../img/icon-moon.svg") no-repeat center;
+
+                &.ativo {
+                    background: url("../img/icon-sun.svg") no-repeat center;
+                }
             }
         }
     }

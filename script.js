@@ -271,11 +271,6 @@ setTimeout(() => {
 }, 400);
 
 window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        let draggable = document.querySelectorAll('li.task:not(.completo)');
-
-        console.log(draggable)
-    }, 400);
     //check if user is using a device with touchscreen
     let notouchWarning = document.getElementById('notouch');
     if ('ontouchstart' in window) {

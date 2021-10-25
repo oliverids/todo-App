@@ -17,7 +17,6 @@ export default function mainSection() {
 
     nomeSalvo();
 
-
     // //nome
     const changename = document.getElementById('changename'),
         novoNome = document.getElementById('nome');
@@ -34,7 +33,7 @@ export default function mainSection() {
             novoNome.classList.remove('ativo');
             changename.classList.remove('ativo');
             let novoUsername = novoNome.value;
-            localStorage.setItem('username', novoUsername)
+            localStorage.setItem('user', novoUsername)
         }
     })
 

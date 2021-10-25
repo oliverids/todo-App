@@ -8,19 +8,25 @@
     <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/0a7be9467a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.min.css">
+    <script>
+        document.documentElement.className += ' js';
+        document.documentElement.style.overflow = 'hidden';
+    </script>
     <title>TODO App</title>
 </head>
 
 <body>
     <div id="loader">
-        <h1 id="titulo">TODO</h1>
-        <div id="info">
-            <div>
-                <h2>Bem-vindo</h2>
-                <p>Como gostaria de ser chamado?</p>
+        <div class="container">
+            <h1 id="titulo">TODO</h1>
+            <div id="info">
+                <div>
+                    <h2>Bem-vindo</h2>
+                    <p>Como gostaria de ser chamado?</p>
+                </div>
+                <input type="text" name="nomeuser" id="user">
+                <button id="begin">Começar</button>
             </div>
-            <input type="text" name="nomeuser" id="user">
-            <button id="begin">Começar</button>
         </div>
     </div>
     <main>
@@ -45,7 +51,8 @@
                 <button id="open"><i class="fas fa-plus" aria-hidden="true"></i></button>
                 <div class="overlay">
                     <div class="container">
-                        <button id="back"><i class="fas fa-chevron-left" aria-hidden="true"></i><span>Voltar</span></button>
+                        <button id="back"><i class="fas fa-chevron-left"
+                                aria-hidden="true"></i><span>Voltar</span></button>
                         <div class="newtask">
                             <input type="text" id="create" placeholder="Create a new todo...">
                             <div class="select">

@@ -1,7 +1,11 @@
+export function nomeSalvo() {
+    const nome = document.getElementById('nome');
+    nome.value = localStorage.getItem('username');
+    setTimeout(() => nome.disabled = true, 100);
+}
+
 export default function load() {
     window.addEventListener('DOMContentLoaded', () => {
-
-
         if (localStorage.getItem("username") === null) {
             localStorage.clear();
             document.body.style.overflow = 'hidden';
@@ -23,9 +27,10 @@ export default function load() {
                 if (user.length) {
                     localStorage.setItem('username', user);
                     setTimeout(() => {
-                    [loader, info, titulo].forEach(e => e.classList.remove("show"))
+                        [loader, info, titulo].forEach(e => e.classList.remove("show"))
                     }, 100);
                 }
+                nomeSalvo();
             })
 
             window.addEventListener("keyup", evt => {
@@ -34,8 +39,10 @@ export default function load() {
                 }
             })
         }
-        const nome = document.getElementById('nome');
-        nome.value = localStorage.getItem('username');
-        nome.disabled = true;
     })
+    // setTimeout(() => {
+    //     const nome = document.getElementById('nome');
+    //     nome.value = localStorage.getItem('username');
+    // }, 50);
+    // setTimeout(() => nome.disabled = true, 100);
 }

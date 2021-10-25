@@ -1,3 +1,6 @@
+import { nomeSalvo } from './loader.js';
+
+
 export default function mainSection() {
     //hora
     const time = document.getElementById('time');
@@ -12,7 +15,10 @@ export default function mainSection() {
         time.innerText = 'Boa noite,';
     }
 
-    //nome
+    nomeSalvo();
+
+
+    // //nome
     const changename = document.getElementById('changename'),
         novoNome = document.getElementById('nome');
 
@@ -47,7 +53,6 @@ export default function mainSection() {
         })
 
         let temaSalvo = localStorage.getItem('tema');
-        console.log(temaSalvo)
 
         if (temaSalvo == 'escuro') {
             document.body.classList.remove("claro");

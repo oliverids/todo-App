@@ -34,13 +34,12 @@ body {
 
 *::-webkit-scrollbar {
     width: 8px;
-    background: #fff;
+    background: var(--texto2);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--azul);
-    border: 1px solid rgb(37, 79, 163);
-    height: 10px;
+    background: var(--texto);
+    border: 2px solid var(--texto2);
     border-radius: 10px;
 }
 

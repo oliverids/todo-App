@@ -55,8 +55,10 @@ export default function mainSection() {
 
         if (temaSalvo == 'escuro') {
             document.body.classList.remove("claro");
+            tema.classList.remove("ativo");
         } else {
             document.body.classList.add("claro");
+            tema.classList.add("ativo");
         }
     })
 }

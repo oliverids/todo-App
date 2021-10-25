@@ -19,19 +19,19 @@ export default function mainSection() {
 
     // //nome
     const changename = document.getElementById('changename'),
+        userdiv = document.getElementById('userdiv'),
         novoNome = document.getElementById('nome');
 
-    changename.addEventListener('click', () => {
+    userdiv.addEventListener('click', () => {
         novoNome.disabled = false;
-        novoNome.classList.add('ativo');
-        changename.classList.add('ativo');
+        [novoNome, userdiv, changename].forEach(e => e.classList.add('ativo'));
+        novoNome.focus();
     })
 
     window.addEventListener('click', e => {
         if (!changename.contains(e.target) && !novoNome.contains(e.target)) {
             novoNome.disabled = true;
-            novoNome.classList.remove('ativo');
-            changename.classList.remove('ativo');
+            [novoNome, userdiv, changename].forEach(e => e.classList.remove('ativo'));
             let novoUsername = novoNome.value;
             localStorage.setItem('user', novoUsername)
         }

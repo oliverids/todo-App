@@ -1,7 +1,7 @@
 export function nomeSalvo() {
     const nome = document.getElementById('nome');
     nome.value = localStorage.getItem('user');
-    // setTimeout(() => nome.disabled = true, 100);
+    setTimeout(() => nome.disabled = true, 100);
 }
 
 export default function load() {

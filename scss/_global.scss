@@ -48,9 +48,9 @@ body {
     padding: 0 1rem;
     transition: 0.3s ease-in-out;
 
-    @media only screen and (min-width: 768px) {
-        padding: 0;
+    @media only screen and (min-width: 682px) {
         max-width: 650px;
+        padding: 0;
         margin: 0 auto;
         transition: 0.3s ease-in-out;
     }

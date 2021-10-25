@@ -75,19 +75,6 @@
                 </div>
             </div>
 
-            <div class="select tasksUl">
-                <select name="categorias" id="showcateg" class="select">
-                    <option value="todas">Todas as tarefas</option>
-                    <option value="pessoal">Pessoal</option>
-                    <option value="saude">Saúde</option>
-                    <option value="trabalho">Trabalho</option>
-                    <option value="escola">Escola</option>
-                    <option value="urgente">Urgente</option>
-                    <option value="financas">Finanças</option>
-                    <option value="comprar">Comprar</option>
-                </select>
-            </div>
-
             <article class="tasks">
                 <ul></ul>
 
@@ -98,19 +85,34 @@
             </article>
 
             <article class="sort">
-                <ul>
-                    <li><button id="active" class="sorted">Ativas</button></li>
-                    <li><button id="completed">Completas</button></li>
-                </ul>
-                <p id="notouch">Segure e arraste para reordenar</p>
+                <div class="select tasksUl">
+                    <select name="categorias" id="showcateg" class="select">
+                        <option value="todas">Todas as tarefas</option>
+                        <option value="pessoal">Pessoal</option>
+                        <option value="saude">Saúde</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="escola">Escola</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="financas">Finanças</option>
+                        <option value="comprar">Comprar</option>
+                    </select>
+                </div>
+
+                <div class="sortTask">
+                    <ul>
+                        <li><button id="active" class="sorted">Ativas</button></li>
+                        <li><button id="completed">Completas</button></li>
+                    </ul>
+                </div>
             </article>
+            <p id="notouch">Segure e arraste para reordenar</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>Desafio de <a href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>.</p>
-            <p>Feito por <a href="https://github.com/oliverids/">Isabela Oliveira</a>.</p>
+            <p>Desafio de <a href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>, feito por <a href="https://github.com/oliverids/">Isabela Oliveira</a>.</p>
+            <p>Código disponível no <a href="http://github.com/oliverids/todo-App" target="_blank" rel="noopener noreferrer">repositório do Github</a>.</p>
         </div>
     </footer>
 </body>

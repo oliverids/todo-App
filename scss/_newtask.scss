@@ -6,17 +6,62 @@ body {
                     position: fixed;
                     bottom: 32px;
                     right: 32px;
-                    padding: 10px;
+                    padding: 12px;
+                    border-radius: 48px;
                     width: 56px;
                     height: 56px;
-                    border-radius: 50%;
                     background-color: var(--azul);
                     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.2));
                     z-index: 8000;
+                    transition: width 0.1s ease-in-out;
 
-                    i {
-                        color: #fff;
-                        font-size: 1.4rem;
+                    div {
+                        position: relative;
+
+                        i {
+                            color: #fff;
+                            font-size: 1.4rem;
+                            margin: 0 auto;
+                        }
+
+                        span {
+                            position: absolute;
+                            font-size: 1rem;
+                            color: #fff;
+                            visibility: hidden;
+                            width: 0;
+                            height: 0;
+                            opacity: 0;
+                            transition: opacity 0.3s linear;
+
+                            &.abre {
+                                position: relative;
+                                display: block;
+                                visibility: visible;
+                                width: 182px;
+                                height: auto;
+                                opacity: 1;
+                                transition: opacity 0.3s linear;
+                            }
+                        }
+                    }
+
+                    &.abre {
+                        border-radius: 48px;
+                        right: 32px;
+                        width: 240px;
+                        display: flex;
+                        align-items: center;
+                        transition: width 0.5s ease-in-out;
+
+                        div {
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                margin-right: 12px;
+                            }
+                        }
                     }
                 }
 

@@ -1,8 +1,20 @@
 export default function app() {
     const open = document.getElementById('open'),
+        span = document.querySelector('#open span'),
         overlay = document.querySelector('.overlay'),
         create = document.getElementById('create'),
         back = document.getElementById('back');
+
+    open.addEventListener('mouseenter', () => {
+        open.classList.add('abre');
+        setTimeout(() => span.classList.add('abre'), 300);
+    })
+
+    open.addEventListener('mouseleave', () => {
+        open.classList.remove('abre')
+        span.classList.remove('abre');
+    })
+
     open.addEventListener('click', () => {
         overlay.classList.add('ativo');
         setTimeout(() => create.focus(), 100);

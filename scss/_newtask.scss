@@ -32,7 +32,8 @@ body {
                             width: 0;
                             height: 0;
                             opacity: 0;
-                            transition: opacity 0.3s linear;
+                            overflow: hidden;
+                            transition: opacity .5s linear;
 
                             &.abre {
                                 position: relative;
@@ -41,7 +42,8 @@ body {
                                 width: 182px;
                                 height: auto;
                                 opacity: 1;
-                                transition: opacity 0.3s linear;
+                                overflow: visible;
+                                transition: opacity .5s linear;
                             }
                         }
                     }

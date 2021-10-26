@@ -7,12 +7,19 @@ export default function app() {
 
     open.addEventListener('mouseenter', () => {
         open.classList.add('abre');
-        setTimeout(() => span.classList.add('abre'), 100);
+        setTimeout(() => span.classList.add('abre'), 300);
     })
 
     open.addEventListener('mouseleave', () => {
         open.classList.remove('abre')
         span.classList.remove('abre');
+    })
+
+    window.addEventListener('mousemove', evt => {
+        if(!open.contains(evt.target) && !span.contains(evt.target)) {
+            open.classList.remove('abre')
+            span.classList.remove('abre');
+        }
     })
 
     open.addEventListener('click', () => {

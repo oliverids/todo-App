@@ -1,6 +1,5 @@
 import { nomeSalvo } from './loader.js';
 
-
 export default function mainSection() {
     //hora
     const time = document.getElementById('time');
@@ -20,20 +19,50 @@ export default function mainSection() {
     // //nome
     const changename = document.getElementById('changename'),
         userdiv = document.getElementById('userdiv'),
-        novoNome = document.getElementById('nome');
+        novoNome = document.getElementById('nome'),
+        edita = document.getElementById('edita');
 
-    userdiv.addEventListener('click', () => {
-        novoNome.disabled = false;
-        [novoNome, userdiv, changename].forEach(e => e.classList.add('ativo'));
-        novoNome.focus();
-    })
+    changename.addEventListener('mouseenter', () => {
+        changename.classList.add('abre')
+        edita.classList.add('abre');
+    });
+
+    changename.addEventListener('mouseleave', () => {
+        changename.classList.remove('abre')
+        edita.classList.remove('abre');
+    });
+
+    changename.addEventListener('click', () => {
+        if (changename.classList.contains('ativo')) {
+            edita.innerText = 'Editar';
+            [edita, changename].forEach(e => e.classList.remove('ativo'))
+            novoNome.disabled = true;
+        } else {
+            edita.innerText = 'Salvar';
+            [edita, changename].forEach(e => e.classList.add('ativo'))
+            novoNome.disabled = false;
+            novoNome.focus();
+            [novoNome, userdiv].forEach(e => e.classList.toggle('ativo'));
+        }
+    });
+
+    function cliqueForaDoInput() {
+        novoNome.disabled = true;
+        [edita, changename].forEach(e => e.classList.remove('ativo'));
+        [novoNome, userdiv].forEach(e => e.classList.remove('ativo'));
+        let novoUsername = novoNome.value;
+        localStorage.setItem('usuario', novoUsername);
+    }
 
     window.addEventListener('click', e => {
         if (!changename.contains(e.target) && !novoNome.contains(e.target)) {
-            novoNome.disabled = true;
-            [novoNome, userdiv, changename].forEach(e => e.classList.remove('ativo'));
-            let novoUsername = novoNome.value;
-            localStorage.setItem('usuario', novoUsername)
+            cliqueForaDoInput();
+        }
+    })
+
+    window.addEventListener('keyup', evt => {
+        if (evt.keyCode == 13) {
+            cliqueForaDoInput();
         }
     })
 

@@ -33,7 +33,7 @@ export default function mainSection() {
             novoNome.disabled = true;
             [novoNome, userdiv, changename].forEach(e => e.classList.remove('ativo'));
             let novoUsername = novoNome.value;
-            localStorage.setItem('user', novoUsername)
+            localStorage.setItem('usuario', novoUsername)
         }
     })
 

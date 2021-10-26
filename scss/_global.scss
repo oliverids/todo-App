@@ -87,7 +87,6 @@ p {
     position: relative;
 
     &.completo {
-        background: $check;
         border: none;
 
         &::after {

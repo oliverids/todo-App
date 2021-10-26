@@ -7,7 +7,7 @@ export default function app() {
 
     open.addEventListener('mouseenter', () => {
         open.classList.add('abre');
-        setTimeout(() => span.classList.add('abre'), 300);
+        setTimeout(() => span.classList.add('abre'), 100);
     })
 
     open.addEventListener('mouseleave', () => {

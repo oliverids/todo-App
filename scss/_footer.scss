@@ -9,14 +9,14 @@ footer {
         p {
             text-align: center;
             font-size: 0.9rem;
-            color: var(--texto2);
+            color: var(--texto);
 
             &:first-child {
                 margin-bottom: 8px;
             }
 
             a {
-                color: var(--texto);
+                color: var(--azul);
             }
         }
     }

@@ -30,6 +30,16 @@ body {
     background-color: var(--fundo);
     position: relative;
     font-family: $josefin;
+
+    * {
+        transition: color .2s ease-in-out, background-color .2s ease-in-out;
+    }
+
+    &.claro {
+        * {
+            transition: color .2s ease-in-out, background-color .2s ease-in-out;
+        }
+    }
 }
 
 *::-webkit-scrollbar {

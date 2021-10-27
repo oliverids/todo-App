@@ -32,40 +32,58 @@
                     width: 100%;
 
                     &.pessoal {
-                        border-left: 8px solid #9A5BFF;
+                        color: #9a5bff;
+                        border-left: 8px solid #9a5bff;
                     }
 
                     &.saude {
-                        border-left: 8px solid #5B93FF;
+                        color: #5b93ff;
+                        border-left: 8px solid #5b93ff;
                     }
 
                     &.trabalho {
-                        border-left: 8px solid #E9B530;
+                        color: #e9b530;
+                        border-left: 8px solid #e9b530;
                     }
 
                     &.escola {
-                        border-left: 8px solid #EC8814;
+                        color: #ec8814;
+                        border-left: 8px solid currentColor;
+
+                        div button {
+                            color: currentColor;
+                        }
                     }
 
                     &.urgente {
-                        border-left: 8px solid #CE1515;
+                        color: #ce1515;
+                        border-left: 8px solid #ce1515;
                     }
 
                     &.financas {
-                        border-left: 8px solid #4D8B57;
+                        color: #4d8b57;
+                        border-left: 8px solid #4d8b57;
                     }
 
                     &.comprar {
-                        border-left: 8px solid #DE25C0;
+                        color: #de25c0;
+                        border-left: 8px solid #de25c0;
                     }
 
                     &.over {
                         border: 1px solid var(--detalhe);
                     }
 
-                    &.completo {
-                        text-decoration: line-through;
-                        filter: brightness(80%);
+                    &.escola,
+                    &.pessoal,
+                    &.saude,
+                    &.trabalho,
+                    &.urgente,
+                    &.financas,
+                    &.comprar {
+                        div button {
+                            color: currentColor;
+                        }
                     }
 
                     div {
@@ -73,7 +91,18 @@
                         align-items: center;
                         width: calc(100% - 20px);
 
+                        #checa {
+                            width: 22px;
+                            height: 22px;
+                            background: transparent;
+                            border: 2px solid;
+                            border-radius: 50%;
+                            margin-right: 12px;
+                            position: relative;
+                        }
+
                         p {
+                            margin: 0;
                             max-width: 85%;
                             word-wrap: break-word;
                         }
@@ -83,6 +112,26 @@
                         padding: 10px;
                         background: url("../img/icon-cross.svg") no-repeat center;
                         background-size: 70%;
+                    }
+
+                    &.completo {
+                        filter: brightness(80%);
+                        p {
+                            text-decoration: line-through;
+                        }
+
+                        #checa {
+                            text-decoration: none;
+                            background: currentColor;
+
+                            &::before {
+                                @extend %fontAwesome;
+                                content: "\f00c";
+                                font-size: .7rem;
+                                text-decoration: none;
+                                color: #fff;
+                            }
+                        }
                     }
                 }
             }
@@ -121,7 +170,7 @@
             margin-top: 1.4rem;
             font-size: 0.9rem;
             visibility: visible;
-        
+
             &.notouch {
                 visibility: hidden;
             }

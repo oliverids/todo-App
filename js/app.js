@@ -16,7 +16,7 @@ export default function app() {
     })
 
     window.addEventListener('mousemove', evt => {
-        if(!open.contains(evt.target) && !span.contains(evt.target)) {
+        if (!open.contains(evt.target) && !span.contains(evt.target)) {
             open.classList.remove('abre')
             span.classList.remove('abre');
         }
@@ -83,6 +83,7 @@ export default function app() {
             newTask.classList.add(completo)
             newTask.innerHTML = `
         <div>
+            <button id="checa"></button>
           <p>${tasktext}</p>
         </div>
         <button class="close"></button>
@@ -96,6 +97,7 @@ export default function app() {
             newTask.setAttribute('draggable', 'true');
             newTask.innerHTML = `
         <div>
+            <button id="checa"></button>
           <p>${tasktext}</p>
         </div>
         <button class="close"></button>
@@ -234,6 +236,7 @@ export default function app() {
     window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             let lista = document.querySelectorAll('li.task:not(.completo)');
+            lista.forEach(e => e.style.display = 'flex')
             itemLeft.innerText = `${lista.length} tarefa(s) ativa(s)`;
         }, 100);
         //check if user is using a device with touchscreen

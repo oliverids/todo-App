@@ -3,6 +3,12 @@
 
 $josefin: "Josefin Sans", sans-serif;
 
+%fontAwesome {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -32,12 +38,12 @@ body {
     font-family: $josefin;
 
     * {
-        transition: color .2s ease-in-out, background-color .2s ease-in-out;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     }
 
     &.claro {
         * {
-            transition: color .2s ease-in-out, background-color .2s ease-in-out;
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
     }
 }

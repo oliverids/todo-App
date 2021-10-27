@@ -32,7 +32,8 @@
     }
 
     &.final {
-        background: radial-gradient(ellipse at bottom right, transparent, var(--loaderfundo) 45%, var(--loaderfundo) 100%);
+        background-color: rgb(245, 245, 245);
+        z-index: 7999;
         transition: 0.5s ease-in-out;
     }
 
@@ -119,7 +120,7 @@
         opacity: 0;
         transition: all 0.3s ease-in-out;
         margin-top: -59px;
-        
+
         h2 {
             margin-bottom: 2rem;
         }
@@ -143,10 +144,13 @@
         font-size: 1.4rem;
         text-align: center;
         margin-top: -74px;
+        visibility: hidden;
+        opacity: 0;
         transition: all 0.3s ease-in-out;
 
         &.show {
             visibility: visible;
+            opacity: 1;
             transition: all 0.3s ease-in-out;
         }
     }

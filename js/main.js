@@ -51,7 +51,7 @@ export default function mainSection() {
         [edita, changename].forEach(e => e.classList.remove('ativo'));
         [novoNome, userdiv].forEach(e => e.classList.remove('ativo'));
         let novoUsername = novoNome.value;
-        localStorage.setItem('usuario', novoUsername);
+        localStorage.setItem('username', novoUsername);
     }
 
     window.addEventListener('click', e => {

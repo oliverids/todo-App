@@ -43,13 +43,13 @@ body {
 }
 
 *::-webkit-scrollbar {
-    width: 8px;
-    background: var(--texto2);
+    width: 12px;
+    background: var(--fundolista);
 }
 
 *::-webkit-scrollbar-thumb {
     background: var(--texto);
-    border: 2px solid var(--texto2);
+    border: 4px solid var(--fundolista);
     border-radius: 10px;
 }
 

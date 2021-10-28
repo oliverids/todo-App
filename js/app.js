@@ -4,32 +4,29 @@ export default function app() {
         overlay = document.querySelector('.overlay'),
         create = document.getElementById('create'),
         back = document.getElementById('back'),
-        warn = document.getElementById('warning');
+        warn = document.getElementById('warning'),
+        taskDiv = document.querySelector('.cinput');
 
     open.addEventListener('mouseenter', () => {
-        open.classList.add('abre');
-        span.classList.add('abre')
+        [open, span].forEach(e => e.classList.add('abre'));
     })
 
     open.addEventListener('mouseleave', () => {
-        open.classList.remove('abre')
-        span.classList.remove('abre');
+        [open, span].forEach(e => e.classList.remove('abre'));
     })
 
     open.addEventListener('click', () => {
-        overlay.classList.add('ativo');
+        [overlay, taskDiv].forEach(e => e.classList.add('ativo'))
         setTimeout(() => create.focus(), 100);
     })
     back.addEventListener('click', () => {
-        overlay.classList.remove('ativo');
-        warn.classList.remove('ativo');
+        [overlay, warn, taskDiv].forEach(e => e.classList.remove('ativo'))
         document.getElementById('create').value = '';
     })
 
     window.addEventListener('click', e => {
         if (!overlay.contains(e.target) && !open.contains(e.target)) {
-            overlay.classList.remove('ativo');
-            warn.classList.remove('ativo');
+            [overlay, warn, taskDiv].forEach(e => e.classList.remove('ativo'))
             document.getElementById('create').value = '';
         }
     })
@@ -40,31 +37,29 @@ export default function app() {
         configOverlay = document.getElementById('config-overlay'),
         refreshPage = document.getElementById('refresh'),
         clearData = document.getElementById('clearData'),
-        configAviso = document.getElementById('config-aviso');
+        configAviso = document.getElementById('config-aviso'),
+        configDiv = document.getElementById('configs');
 
     openConfig.addEventListener('mouseenter', () => {
-        openConfig.classList.add('abre');
-        configSpan.classList.add('abre')
+        [openConfig, configSpan].forEach(e => e.classList.add('abre'));
     });
 
     openConfig.addEventListener('mouseleave', () => {
-        openConfig.classList.remove('abre')
-        configSpan.classList.remove('abre');
+        [openConfig, configSpan].forEach(e => e.classList.remove('abre'));
     });
 
     openConfig.addEventListener('click', () => {
-        configOverlay.classList.add('ativo');
+        [configOverlay, configDiv].forEach(e => e.classList.add('ativo'));
+
     });
 
     configBack.addEventListener('click', () => {
-        configOverlay.classList.remove('ativo');
-        configAviso.classList.remove('ativo');
+        [configOverlay, configAviso, configDiv].forEach(e => e.classList.remove('ativo'));
     });
 
     window.addEventListener('click', e => {
         if (!configOverlay.contains(e.target) && !openConfig.contains(e.target)) {
-            configOverlay.classList.remove('ativo');
-            configAviso.classList.remove('ativo');
+            [configOverlay, configAviso, configDiv].forEach(e => e.classList.remove('ativo'));
         }
     })
 

@@ -162,12 +162,12 @@ p {
     background-color: var(--azul);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.2));
     z-index: 8000;
-    transition: width 0.1s ease-in-out, background-color .3s ease-in-out;
+    transition: width 0.1s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
 
     &:hover {
         background-color: hsl(220, 83%, 45%);
-        transition: background-color .3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
     }
 
     div {
@@ -188,7 +188,7 @@ p {
             height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: opacity .3s linear;
+            transition: opacity 0.3s linear;
 
             &.abre,
             &.ativo {
@@ -199,7 +199,7 @@ p {
                 height: auto;
                 opacity: 1;
                 overflow: visible;
-                transition: opacity .3s linear;
+                transition: opacity 0.3s linear;
             }
         }
     }
@@ -297,4 +297,16 @@ p {
             transition: all 0.3s ease-in-out;
         }
     }
+}
+
+.cinput.ativo,
+#configs.ativo {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 9900;
+    width: 100%;
+    height: 100vh;
+    transition: .3s ease-in-out;
 }

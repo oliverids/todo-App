@@ -3,7 +3,8 @@ export default function app() {
         span = document.querySelector('#open span'),
         overlay = document.querySelector('.overlay'),
         create = document.getElementById('create'),
-        back = document.getElementById('back');
+        back = document.getElementById('back'),
+        warn = document.getElementById('warning');
 
     open.addEventListener('mouseenter', () => {
         open.classList.add('abre');
@@ -21,14 +22,68 @@ export default function app() {
     })
     back.addEventListener('click', () => {
         overlay.classList.remove('ativo');
+        warn.classList.remove('ativo');
+        document.getElementById('create').value = '';
     })
 
     window.addEventListener('click', e => {
         if (!overlay.contains(e.target) && !open.contains(e.target)) {
             overlay.classList.remove('ativo');
+            warn.classList.remove('ativo');
+            document.getElementById('create').value = '';
         }
     })
 
+    const openConfig = document.getElementById('open-config'),
+        configSpan = document.querySelector('#open-config span'),
+        configBack = document.querySelector('#config-back'),
+        configOverlay = document.getElementById('config-overlay'),
+        refreshPage = document.getElementById('refresh'),
+        clearData = document.getElementById('clearData'),
+        configAviso = document.getElementById('config-aviso');
+
+    openConfig.addEventListener('mouseenter', () => {
+        openConfig.classList.add('abre');
+        configSpan.classList.add('abre')
+    });
+
+    openConfig.addEventListener('mouseleave', () => {
+        openConfig.classList.remove('abre')
+        configSpan.classList.remove('abre');
+    });
+
+    openConfig.addEventListener('click', () => {
+        configOverlay.classList.add('ativo');
+    });
+
+    configBack.addEventListener('click', () => {
+        configOverlay.classList.remove('ativo');
+        configAviso.classList.remove('ativo');
+    });
+
+    window.addEventListener('click', e => {
+        if (!configOverlay.contains(e.target) && !openConfig.contains(e.target)) {
+            configOverlay.classList.remove('ativo');
+            configAviso.classList.remove('ativo');
+        }
+    })
+
+    refreshPage.addEventListener('click', () => {
+        window.location.reload();
+    });
+
+    clearData.addEventListener('click', e => {
+        if (!configAviso.classList.contains('ativo')) {
+            configAviso.classList.add('ativo');
+        } else {
+            setTimeout(() => {
+                localStorage.clear();
+                refreshPage.click();
+            }, 200);
+        }
+    })
+
+    //tarefas
     let taskList = document.querySelector('.tasks ul'),
         tasks, dragList, local, complete;
     //update the task list after every modification
@@ -349,8 +404,7 @@ export default function app() {
 
     post.addEventListener('click', () => {
         let valor = create.value,
-            categ = createcateg.value,
-            warn = document.getElementById("warning");
+            categ = createcateg.value;
 
         if (valor.length && categ !== 'hide') {
             warn.classList.remove('ativo');

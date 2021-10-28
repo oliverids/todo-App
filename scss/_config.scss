@@ -1,0 +1,37 @@
+#configs {
+    #open-config {
+        bottom: 104px;
+
+        &.abre {
+            width: 170px;
+        }
+
+        div span {
+            width: 104px;
+        }
+    }
+
+    #config-overlay {
+        height: 60%;
+        .container {
+            flex-direction: column;
+
+            .controles {
+                display: flex;
+                flex-direction: column;
+
+                button {
+                    width: 100%;
+                    text-align: center;
+                    i {
+                        margin-right: 12px;
+                    }
+                }
+
+                // div button span{
+                //     margin-bottom: 0.8rem;
+                // }
+            }
+        }
+    }
+}

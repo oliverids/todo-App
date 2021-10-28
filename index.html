@@ -8,10 +8,10 @@
     <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/0a7be9467a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.min.css">
-    <script>
+    <!-- <script>
         document.documentElement.className += ' js';
         document.documentElement.style.overflow = 'hidden';
-    </script>
+    </script> -->
     <title>TODO App</title>
 </head>
 
@@ -57,7 +57,7 @@
     <section id="todo">
         <div class="container">
             <div class="cinput">
-                <button id="open">
+                <button id="open" class="abre-btn">
                     <div>
                         <i class="fas fa-plus" aria-hidden="true"></i>
                         <span>Adicione uma nova tarefa</span>
@@ -65,9 +65,9 @@
                 </button>
                 <div class="overlay">
                     <div class="container">
-                        <button id="back">
+                        <button id="back" class="volta-btn">
                             <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            <span>Voltar</span>
+                            <span>Fechar</span>
                         </button>
                         <div class="newtask">
                             <input type="text" id="create" placeholder="Create a new todo...">
@@ -83,8 +83,8 @@
                                     <option value="comprar">Comprar</option>
                                 </select>
                             </div>
-                            <p id="warning">Adicione uma categoria!</p>
-                            <button id="post">Adicionar nova tarefa</button>
+                            <p id="warning" class="aviso">Adicione uma categoria!</p>
+                            <button id="post" class="main-btn">Adicionar nova tarefa</button>
                         </div>
                     </div>
                 </div>
@@ -123,6 +123,42 @@
             <p id="notouch">Segure e arraste para reordenar</p>
         </div>
     </section>
+
+    <div id="configs">
+        <div class="container">
+            <button id="open-config" class="abre-btn">
+                <div>
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Configurações</span>
+                </div>
+            </button>
+            <div class="overlay" id="config-overlay">
+                <div class="container">
+                    <button id="config-back" class="volta-btn">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        <span>Fechar</span>
+                    </button>
+    
+                    <div class="controles">
+                        <button id="refresh" class="main-btn">
+                            <div>
+                                <i class="fas fa-redo-alt"></i>
+                                <span>Recarregar página</span>
+                            </div>
+                        </button>
+                        
+                        <div>
+                            <button class="main-btn" id="clearData">
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Apagar Dados</span>
+                            </button>
+                            <p class="aviso" id="config-aviso">Apagar todos os dados também significará apagar todas as suas tarefas ativas e completas. Escolha com cuidado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">

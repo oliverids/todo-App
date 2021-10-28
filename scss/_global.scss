@@ -49,13 +49,14 @@ body {
 }
 
 *::-webkit-scrollbar {
-    width: 12px;
-    background: var(--fundolista);
+    width: 8px;
+    background: none;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--texto);
-    border: 4px solid var(--fundolista);
+    background: var(--texto2);
+    border: 4px solid;
+    border-color: none;
     border-radius: 10px;
 }
 

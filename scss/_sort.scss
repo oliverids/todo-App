@@ -10,10 +10,11 @@
     }
 
     .tasksUl {
-        width: 220px;
+        width: 270px;
         margin-bottom: 1rem;
 
         @media only screen and (min-width: 500px) {
+            width: 220px;
             margin: 0;
         }
 
@@ -36,6 +37,11 @@
         padding: 6px 12px;
         background-color: var(--fundolista);
         border-radius: 6px;
+        width: 270px;
+
+        @media only screen and (min-width: 500px) {
+            width: 220px;
+        }
 
         li {
             &:first-child {

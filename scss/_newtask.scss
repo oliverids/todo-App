@@ -5,7 +5,7 @@ body {
                 #open {
                     position: fixed;
                     bottom: 32px;
-                    right: 32px;
+                    right: 16px;
                     padding: 12px;
                     border-radius: 48px;
                     width: 56px;
@@ -34,9 +34,10 @@ body {
                             height: 0;
                             opacity: 0;
                             overflow: hidden;
-                            transition: opacity .5s linear;
+                            transition: opacity 1s linear;
 
-                            &.abre, &.ativo {
+                            &.abre,
+                            &.ativo {
                                 position: relative;
                                 display: block;
                                 visibility: visible;
@@ -44,14 +45,14 @@ body {
                                 height: auto;
                                 opacity: 1;
                                 overflow: visible;
-                                transition: opacity .5s linear;
+                                transition: opacity 1s linear;
                             }
                         }
                     }
 
-                    &.abre, &.ativo {
+                    &.abre,
+                    &.ativo {
                         border-radius: 48px;
-                        right: 32px;
                         width: 240px;
                         display: flex;
                         align-items: center;
@@ -73,7 +74,7 @@ body {
                     background: var(--fundolista);
                     border-radius: 20px 20px 0 0;
                     width: 100%;
-                    height: 60%;
+                    height: 72%;
                     left: 0;
                     bottom: 0;
                     z-index: 99999;
@@ -82,6 +83,10 @@ body {
                     transition: all 0.3s ease-in-out;
                     visibility: hidden;
                     box-shadow: 0px -8px 20px rgba(0, 0, 0, 0.2);
+
+                    @media only screen and (min-width: 1000px) {
+                        height: 50%;
+                    }
 
                     &.ativo {
                         visibility: visible;
@@ -119,7 +124,7 @@ body {
                             font-size: 1rem;
                             color: var(--texto);
                             font-family: $josefin;
-                            margin-bottom: 2rem;
+                            margin-bottom: 2.5rem;
 
                             &::placeholder {
                                 color: var(--texto2);
@@ -142,7 +147,7 @@ body {
                         }
 
                         #post {
-                            margin-top: 2rem;
+                            margin-top: 2.5rem;
                             font-family: $josefin;
                             color: #fff;
                             padding: 1rem 0;

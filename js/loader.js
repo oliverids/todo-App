@@ -14,10 +14,11 @@ export default function load() {
             tutorial2 = document.getElementById('tutorial2'),
             openshow = document.getElementById('open'),
             spanshow = document.querySelector('#open span');
+        openshow.disabled = true;
 
         if (localStorage.getItem("username") === null) {
             localStorage.clear();
-            setTimeout(() => window.scrollTo( 0, 0), 200);
+            setTimeout(() => window.scrollTo(0, 0), 200);
             titulo.classList.add('show');
 
             setTimeout(() => titulo.classList.remove('show'), 1000);
@@ -50,30 +51,39 @@ export default function load() {
                     setTimeout(() => spanshow.classList.add('ativo'), 600);
 
                     window.addEventListener('click', evt => {
-                        if(!terminou) {
-                            if(!openshow.contains(evt.target)) {
+                        evt.preventDefault();
+                        if (!terminou) {
+                            if (!openshow.contains(evt.target)) {
                                 tutorial2.classList.remove('show');
                                 loader.classList.add('completo');
                                 document.documentElement.style.overflow = 'visible';
                                 setTimeout(() => openshow.classList.remove('ativo'), 300);
                                 setTimeout(() => spanshow.classList.remove('ativo'), 300);
+                                openshow.disabled = false;
                             } else {
-                                evt.preventDefault();
                                 tutorial2.classList.remove('show');
                                 loader.classList.add('completo');
-                                setTimeout(() => openshow.click(), 200);
+                                setTimeout(() => loader.style.display = 'none', 1600);
                                 terminou = true;
-                                setTimeout(() => openshow.classList.remove('ativo'), 300);
-                                setTimeout(() => spanshow.classList.remove('ativo'), 300);
+                                setTimeout(() => {
+                                    openshow.classList.remove('ativo')
+                                    spanshow.classList.remove('ativo')
+                                    openshow.disabled = false;
+                                }, 300);
+                                setTimeout(() => openshow.click(), 500);
                             }
                         }
                     })
                 }, 1000);
             })
         } else {
+            openshow.disabled = false;
             titulo.classList.add('show')
-            setTimeout(() => loader.classList.add('completo'), 1000);
-            setTimeout(() => document.documentElement.style.overflow = 'visible', 1200);
+            setTimeout(() => {
+                loader.classList.add('completo')
+                document.documentElement.style.overflow = 'visible'
+            }, 1000);
+            setTimeout(() => loader.style.display = 'none', 1600);
         }
     })
 }

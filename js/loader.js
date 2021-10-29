@@ -14,7 +14,6 @@ export default function load() {
             tutorial2 = document.getElementById('tutorial2'),
             openshow = document.getElementById('open'),
             spanshow = document.querySelector('#open span');
-        openshow.disabled = true;
 
         if (localStorage.getItem("username") === null) {
             localStorage.clear();
@@ -59,7 +58,6 @@ export default function load() {
                                 document.documentElement.style.overflow = 'visible';
                                 setTimeout(() => openshow.classList.remove('ativo'), 300);
                                 setTimeout(() => spanshow.classList.remove('ativo'), 300);
-                                openshow.disabled = false;
                             } else {
                                 tutorial2.classList.remove('show');
                                 loader.classList.add('completo');
@@ -68,16 +66,14 @@ export default function load() {
                                 setTimeout(() => {
                                     openshow.classList.remove('ativo')
                                     spanshow.classList.remove('ativo')
-                                    openshow.disabled = false;
                                 }, 300);
-                                setTimeout(() => openshow.click(), 500);
+                                setTimeout(() => document.querySelector('.cinput .overlay'), 1000);
                             }
                         }
                     })
                 }, 1000);
             })
         } else {
-            openshow.disabled = false;
             titulo.classList.add('show')
             setTimeout(() => {
                 loader.classList.add('completo')

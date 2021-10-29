@@ -12,8 +12,8 @@
  <a href="#desafio">O desafio</a> | 
  <a href="#tecnologias">Tecnologias</a> | 
  <a href="#imagens">Imagens</a> | 
- <a href="#links">Links</a> | 
- <a href="#autor">Autor</a>
+ <a href="#links">Links</a> |
+ <a href="#redes">Redes</a>
 </p>
 
 ---
@@ -69,8 +69,7 @@ O usuário pode:
 <p><a href="https://oliverids.github.io/todo-App/" target="_blank">Live Site URL</a></p>
 <p>(Este link do Github Pages mostrará apenas a nova versão customizada, da branch "novaui").</p>
 
-
-<br />
-##### Frontend Mentor - [@oliverids](https://www.frontendmentor.io/profile/oliverids)
+#### Redes
+<p>Perfil do FrontEnd Mentor - <a href="https://www.frontendmentor.io/profile/oliverids">@oliverids</a></p>
 
 <a href="https://www.linkedin.com/in/isabela-oliveira23/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>

@@ -1,6 +1,22 @@
-# Frontend Mentor - TODO App Solution
+<h1 text-align="center">TODO</h1>
 
-Essa é uma solução para o desafio do [TODO App](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW), um aplicativo para criação de tarefas.
+<p text-align="center">Um aplicativo para listagem de tarefas.</p>
+
+---
+
+<p>Este projeto foi baseado no desafio do <a href="https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW">TODO App</a> da plataforma FrontEnd Mentor, e então personalizado por mim.</p>
+
+<p></p>
+
+<p text-align="center">
+ <a href="#desafio">O desafio</a> | 
+ <a href="#tecnologias">Tecnologias</a> | 
+ <a href="#imagens">Imagens</a> | 
+ <a href="#links">Links</a> | 
+ <a href="#autor">Autor</a>
+</p>
+
+---
 
 ### Visão Geral
 
@@ -8,26 +24,20 @@ Essa é uma solução para o desafio do [TODO App](https://www.frontendmentor.io
 
 O usuário pode:
 
-- Ver o layout do aplicativo independente do tamanho da tela (Design Responsivo);
+- Usufruir do layout do aplicativo independente do tamanho da tela (Design Responsivo);
 - Escolher entre modo escuro e claro;
 - Ver os estados ativos e com foco dos elementos;
 - Criar, completar e remover tarefas;
+- Categorizar tarefas;
 - Visualizar a lista de tarefas por "todas", "ativas" e "completas";
 - Segurar e arrastar para reordenar a lista (apenas para computador);
-- Ter as tarefas salvas no próprio navegador (localStorage).
+- Ter as tarefas salvas no próprio navegador (localStorage);
+- Escolher um nome de usuário;
+- Como também pode escolher apagar todos os dados do localStorage.
 
-#### Screenshot
+---
 
-<p align="center">
-<img src="Screenshot_1.png"/>
-
-#### Links
-
-- Live Site URL: [Github Pages](https://oliverids.github.io/todo-App/)
-
-## Processo
-
-#### Feito com
+#### Tecnologias
 
 - HTML5 semântico
 - Propriedades CSS customizadas
@@ -36,5 +46,31 @@ O usuário pode:
 - Mobile-first Workflow
 - JavaScript
 
+---
+
+#### Imagens
+
+<p>
+<div align="center">
+<h4>Identidade visual original</h4>
+<img src="Screenshot_1.png"/>
+<p>Da plataforma FrontEnd Mentor</p>
+</div>
+
+<div  align="center">
+<h4>Customização</h4>
+<img src="Screenshot_2.png"/>
+</div>
+</p>
+
+---
+#### Links
+
+<p><a href="https://oliverids.github.io/todo-App/" target="_blank">Live Site URL</a></p>
+<p>(Este link do Github Pages mostrará apenas a nova versão customizada, da branch "novaui").</p>
+
+
 <br />
 ##### Frontend Mentor - [@oliverids](https://www.frontendmentor.io/profile/oliverids)
+
+<a href="https://www.linkedin.com/in/isabela-oliveira23/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>

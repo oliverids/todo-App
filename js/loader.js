@@ -39,39 +39,18 @@ export default function load() {
                 })
             }, 1400);
 
-            let terminou = false;
             let begin = document.getElementById('begin');
             begin.addEventListener('click', () => {
                 tutorial1.classList.remove('show');
                 setTimeout(() => loader.classList.add('final'), 500);
+                setTimeout(() => tutorial2.classList.add('show'), 1000);
                 setTimeout(() => {
-                    tutorial2.classList.add('show');
-                    setTimeout(() => openshow.classList.add('ativo'), 300);
-                    setTimeout(() => spanshow.classList.add('ativo'), 600);
-
-                    window.addEventListener('click', evt => {
-                        evt.preventDefault();
-                        if (!terminou) {
-                            if (!openshow.contains(evt.target)) {
-                                tutorial2.classList.remove('show');
-                                loader.classList.add('completo');
-                                document.documentElement.style.overflow = 'visible';
-                                setTimeout(() => openshow.classList.remove('ativo'), 300);
-                                setTimeout(() => spanshow.classList.remove('ativo'), 300);
-                            } else {
-                                tutorial2.classList.remove('show');
-                                loader.classList.add('completo');
-                                setTimeout(() => loader.style.display = 'none', 1600);
-                                terminou = true;
-                                setTimeout(() => {
-                                    openshow.classList.remove('ativo')
-                                    spanshow.classList.remove('ativo')
-                                }, 300);
-                                setTimeout(() => document.querySelector('.cinput .overlay'), 1000);
-                            }
-                        }
-                    })
-                }, 1000);
+                    tutorial2.classList.remove('show');
+                    [openshow, spanshow].forEach(e => e.classList.add('ativo'))
+                    loader.classList.add('completo')
+                    document.documentElement.style.overflow = 'visible';
+                }, 2200);
+                setTimeout(() => [openshow, spanshow].forEach(e => e.classList.remove('ativo')), 4000);
             })
         } else {
             titulo.classList.add('show')

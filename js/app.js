@@ -408,7 +408,7 @@ export default function app() {
             postTask(valor, categ);
             create.value = '';
             updateLS();
-            overlay.classList.remove('ativo');
+            [overlay, warn, taskDiv].forEach(e => e.classList.remove('ativo'))
 
             if (!overlay.classList.contains('ativo')) {
                 let options = Array.from(createcateg.querySelectorAll('option'));

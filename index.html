@@ -12,6 +12,9 @@
         document.documentElement.className += ' js';
         document.documentElement.style.overflow = 'hidden';
     </script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2b6ae9"/>
+    <link rel="apple-touch-icon" href="img/192.png">
     <title>TODO App</title>
 </head>
 
@@ -28,7 +31,7 @@
                 <button id="proximo" class="loaderbtn">Próximo</button>
             </div>
             <div id="tutorial1">
-                <h2>Olá, <span id="nomeEscolhido">oliver</span></h2>
+                <h2>Olá, <span id="nomeEscolhido"></span></h2>
                 <p><span>TODO</span> é um aplicativo de listagem de tarefas que te ajudará a organizar sua rotina.</p>
                 <button id="begin" class="loaderbtn">Começar</button>
             </div>
@@ -140,6 +143,13 @@
                     </button>
     
                     <div class="controles">
+                        <button id="install" class="main-btn">
+                            <div>
+                                <i class="fas fa-download"></i>
+                                <span>Instalar aplicativo</span>
+                            </div>
+                        </button>
+
                         <button id="refresh" class="main-btn">
                             <div>
                                 <i class="fas fa-redo-alt"></i>

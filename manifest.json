@@ -1,0 +1,29 @@
+{
+    "short_name": "TODO",
+    "name": "TODO - Aplicativo de Listagem de Tarefas",
+    "start_url": "index.html",
+    "background_color": "#2b6ae9",
+    "theme_color": "#2b6ae9",
+    "display": "standalone",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "img/144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}

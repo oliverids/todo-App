@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TODO App, um aplicativo de listagem e categorização de tarefas.">
     <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/0a7be9467a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.min.css">
@@ -49,10 +50,10 @@
                     <div class="user" id="userdiv">
                         <input id="nome" type="text" name="nome">
                         <span id="animaInput"></span>
-                        <button id="changename"><i class="fas fa-pen fa-sm"></i><span id="edita">Editar</span></button>
+                        <button id="changename" aria-label="Editar nome"><i class="fas fa-pen fa-sm"></i><span id="edita">Editar</span></button>
                     </div>
                 </div>
-                <button id="tema"></button>
+                <button id="tema" aria-label="Mudar tema"></button>
             </div>
         </div>
     </main>
@@ -60,7 +61,7 @@
     <section id="todo">
         <div class="container">
             <div class="cinput">
-                <button id="open" class="abre-btn">
+                <button id="open" aria-label="Adicionar nova tarefa" class="abre-btn">
                     <div>
                         <i class="fas fa-plus" aria-hidden="true"></i>
                         <span>Adicione uma nova tarefa</span>
@@ -129,7 +130,7 @@
 
     <div id="configs">
         <div class="container">
-            <button id="open-config" class="abre-btn">
+            <button id="open-config" aria-label="Abrir configurações" class="abre-btn">
                 <div>
                     <i class="fas fa-sliders-h"></i>
                     <span>Configurações</span>
@@ -172,7 +173,7 @@
 
     <footer>
         <div class="container">
-            <p>Desafio de <a href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>, feito por <a
+            <p>Desafio de <a href="https://www.frontendmentor.io" rel="noreferrer" target="_blank">Frontend Mentor</a>, feito por <a
                     href="https://github.com/oliverids/">Isabela Oliveira</a>.</p>
             <p>Código disponível no <a href="http://github.com/oliverids/todo-App" target="_blank"
                     rel="noopener noreferrer">repositório do Github</a>.</p>

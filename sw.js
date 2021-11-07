@@ -1,5 +1,5 @@
-const staticCache = 'static-00',
-    dynamicCache = 'dynamic-00';
+const staticCache = 'static-01',
+    dynamicCache = 'dynamic-01';
 
 const Resources = async () => {
     let assets = [
@@ -13,7 +13,9 @@ const Resources = async () => {
         'css/style.min.css',
         'img/icon-cross.svg',
         'img/icon-moon.svg',
-        'img/icon-sun.svg'
+        'img/icon-sun.svg',
+        'https://kit.fontawesome.com/0a7be9467a.js',
+        'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap'
     ];
 
     let cache = await caches.open(staticCache);
@@ -25,9 +27,10 @@ self.addEventListener('install', e => {
 });
 
 const updateCache = async () => {
-    let key = await caches.keys();
-    return Promise.all(
-        key.filter(chave => chave !== staticCache && chave !== dynamicCache).map(chave => caches.delete(chave))
+    let chave = await caches.keys();
+    return Promise.all(chave
+        .filter(chave => chave !== staticCache && chave !== dynamicCache)
+        .map(chave => caches.delete(chave))
     )
 }
 

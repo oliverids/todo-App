@@ -306,11 +306,13 @@ p {
     right: 0;
     height: 1px;
     width: 100%;
-    transition: 0.3s ease-in-out;
+    background: none;
+    transition: background 0.3s ease-in-out;
 
     &.ativo {
         background: rgba(0, 0, 0, 0.15);
         z-index: 5000;
         height: 100vh;
+        transition: background 0.3s ease-in-out;
     }
 }

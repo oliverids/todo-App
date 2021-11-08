@@ -9,13 +9,14 @@ window.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.log('erro', err))
     }
 
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (localStorage.getItem('APP_INSTALLED') !== null) {
         installBtn.style.display = 'none';
       }
 })
 
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
+    localStorage.removeItem('APP_INSTALLED');
     deferredPrompt = e;
 });
 
@@ -27,6 +28,7 @@ installBtn.addEventListener('click', async () => {
         if (outcome === 'accepted') {
             deferredPrompt = null;
             installBtn.style.display = 'none';
+            localStorage.setItem('APP_INSTALLED', 'confirmed');
         }
     }
 });

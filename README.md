@@ -66,10 +66,13 @@ O usuário pode:
 ---
 #### Links
 
-<p><a href="https://oliverids.github.io/todo-App/" target="_blank">Live Site URL</a></p>
-<p>(Este link do Github Pages mostrará apenas a nova versão customizada, da branch "novaui").</p>
+- <p><a href="https://todoapp-tasklisting.netlify.app/" target="_blank">TODO App Original</a> (FrontEnd Mentor) </p>
+
+- <p><a href="https://oliverids.github.io/todo-App/" target="_blank">Novo TODO App</a> (Customizado)</p>
 
 #### Redes
 <p>Perfil do FrontEnd Mentor - <a href="https://www.frontendmentor.io/profile/oliverids">@oliverids</a></p>
 
 <a href="https://www.linkedin.com/in/isabela-oliveira23/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f8a52de8-fec5-4ef7-b977-b4c9cd3a0e75/deploy-status)](https://app.netlify.com/sites/todoapp-tasklisting/deploys)
